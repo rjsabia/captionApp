@@ -1,14 +1,14 @@
  var express = require('express')
-    , router = express.Router()
-    , aws = require('aws-sdk')
-
+    , router = express()
+    , aws = require('aws-sdk');
+var path = require('path');
   router.get('/', function(req, res) {
-    res.render('index')
+    res.sendFile(path.join(__dirname,'./index.html'))
   })
 
-  var AWS_ACCESS_KEY = 'your_AWS_access_key'
-  var AWS_SECRET_KEY = 'your_AWS_secret_key'
-  var S3_BUCKET = 'images_upload'
+  var AWS_ACCESS_KEY = 'AKIAIA5P4GULWT6ZZB6Q'
+  var AWS_SECRET_KEY = 'n9+53/1/KcH7uS8DpYDLlhfVrSDaTYctUbu0Ycb3'
+  var S3_BUCKET = 'rjs-rekog-test-bucket-2'
 
   router.get('/sign', function(req, res) {
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
@@ -32,4 +32,6 @@
     })
   })
 
-  module.exports = router
+router.listen(3000);
+
+module.exports = router
