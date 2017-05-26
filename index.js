@@ -1,3 +1,4 @@
+ const ImageAnalyser = require('./imageAnalyser');
  var express = require('express')
     , router = express()
     , aws = require('aws-sdk');
@@ -24,13 +25,36 @@ var path = require('path');
 
     s3.getSignedUrl('putObject', options, function(err, data){
       if(err) return res.send('Error with S3')
+      return res.json({
+              signed_request: data,
+              url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
+        
+            })
+      //add Rekog here
 
-      res.json({
-        signed_request: data,
-        url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name
-      })
+         
     })
   })
+router.get('/rekog', function(req, res){
+  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+  const s3Config = {
+            bucket: S3_BUCKET,
+            imageName: req.query.file_name,
+          };
+
+          return ImageAnalyser
+            .getImageLabels(s3Config)
+            .then((labels) => {
+              res.json({
+                url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
+                labels: labels
+              })
+            })
+            .catch((error) => {
+              res.status(500).send(error);
+            });
+          })
+
 
 router.listen(3000);
 

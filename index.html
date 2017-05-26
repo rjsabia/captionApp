@@ -43,6 +43,18 @@
       sign_request(file, function(response) {
         upload(file, response.signed_request, response.url, function() {
           document.getElementById("preview").src = response.url
+          var xhr = new XMLHttpRequest()
+          
+          xhr.open("GET", "/rekog?file_name=" + file.name + "&file_type=" + file.type)
+
+          xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText)
+            done(response)
+        }
+      }
+
+      xhr.send() 
         })
       })
     }
