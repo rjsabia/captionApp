@@ -1,3 +1,4 @@
+require('dotenv').config();
 const ImageAnalyser = require('./imageAnalyser');
 var express = require('express')
     , router = express()
@@ -8,9 +9,10 @@ router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname,'./index.html'))
   })
 
-var AWS_ACCESS_KEY = 'AKIAJZRUPRYFXPUG7U4Q';
-var AWS_SECRET_KEY = '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';
-var S3_BUCKET = 'rjs-rekog-test-bucket-2';
+console.log(process.env)
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+var S3_BUCKET = process.env.S3_BUCKET;
 
 router.get('/sign', function(req, res) {
   aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
