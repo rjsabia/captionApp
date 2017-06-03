@@ -37,26 +37,46 @@ router.get('/sign', function(req, res) {
       //add Rekog here
     })
   })
-// router.get('/rekog', function(req, res){
-//   aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+router.get('/rekog', function(req, res){
+  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
   
-//   const s3Config = {
-//             bucket: S3_BUCKET,
-//             imageName: req.query.file_name,
-//           };
+  const s3Config = {
+            bucket: S3_BUCKET,
+            imageName: req.query.file_name
+          };
+          console.log(s3Config);
 
-//           return ImageAnalyser
-//             .getImageLabels(s3Config)
-//             .then((labels) => {
-//               res.json({
-//                 url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
-//                 Labels: labels
-//               })
-//             })
-//             .catch((error) => {
-//               res.status(500).send(error);
-//             });
-//           })
+          return ImageAnalyser
+            .getImageLabels(s3Config)
+            .then((labels) => {
+              res.json({
+                url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
+                Labels: labels
+              })
+            })
+            .catch((error) => {
+              res.status(500).send(error);
+            });
+          })
+
+router.get('/api/rekog', function(req,res){
+  var request = require('request')
+
+  request({
+      uri:'https://b5hrtlne7l.execute-api.us-east-1.amazonaws.com/dev/analysis',
+      method:'POST',
+      json:true,
+      body:{ "bucket": S3_BUCKET, "imageName": req.query.file_name},
+      headers:{
+        'Content-Type':'application/json'
+      }
+    },function(error,response,body){
+      console.log(response.statusCode)
+      console.log(body)
+      res.status(response.statusCode).json(body);
+    }
+  )
+})
 
 
 router.listen(3000);
