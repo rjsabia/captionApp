@@ -37,27 +37,27 @@ router.get('/sign', function(req, res) {
       //add Rekog here
     })
   })
-router.get('/rekog', function(req, res){
-  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+// router.get('/rekog', function(req, res){
+//   aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
   
-  const s3Config = {
-            bucket: S3_BUCKET,
-            imageName: req.query.file_name
-          };
-          console.log(s3Config);
+//   const s3Config = {
+//             bucket: S3_BUCKET,
+//             imageName: req.query.file_name
+//           };
+//           console.log(s3Config);
 
-          return ImageAnalyser
-            .getImageLabels(s3Config)
-            .then((labels) => {
-              res.json({
-                url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
-                Labels: labels
-              })
-            })
-            .catch((error) => {
-              res.status(500).send(error);
-            });
-          })
+//           return ImageAnalyser
+//             .getImageLabels(s3Config)
+//             .then((labels) => {
+//               res.json({
+//                 url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
+//                 Labels: labels
+//               })
+//             })
+//             .catch((error) => {
+//               res.status(500).send(error);
+//             });
+//           })
 
 router.get('/api/rekog', function(req,res){
   var request = require('request')
