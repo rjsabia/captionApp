@@ -9,6 +9,10 @@ router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname,'./index.html'))
   })
 
+router.use('/js', express.static('client_js'));
+
+router.use('/client_styles', express.static('client_styles'));
+
 console.log(process.env)
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
