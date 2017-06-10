@@ -26,11 +26,23 @@ function sign_request(file, done) {
 }
 
 function printLabelsTest(responses){
+  $('#pic-labels').empty();
+  var intro = "";
+  $('#pic-labels').append('<span>'+'Your photo '+'</span>');
   for(var i=0; i < responses.Labels.length; i++){
-      // $('#pic-labels').append('<li>' + responses.Labels[i].Name + '</li>');
-    console.log(responses.Labels[i].Name);
-
-    }
+    var theLabel = responses.Labels[i].Name[0]; 
+    // console.log(theLabel);
+    if(theLabel.match(/[aeiouAEIOU]/)){
+      intro = " has an ";
+    } 
+    else{
+      intro = " has a ";
+    }  
+    $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+','+'</span>';
+    // $('#pic-labels').append('<li>' + '<p>' + ' ' + intro + ' ' +
+    //  '</p>' + responses.Labels[i].Name + '</li>');
+  }
+  $('#pic-labels').append('<span>'+' in it.'+'</span>');    
 }
 
 $(document).ready( function(){
@@ -48,18 +60,15 @@ $(document).ready( function(){
 
           xhr.onreadystatechange = function() {
             if(xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText)
-            
+              var response = JSON.parse(xhr.responseText)
             //RESPONSE IS MY OBJECT 
-            // console.log(response);
-            printLabelsTest(response);
+              printLabelsTest(response);
 
             }
-          
           }
+          
           xhr.send() 
 
-       
         })
       })
     }
