@@ -27,7 +27,7 @@ function sign_request(file, done) {
 
 function printLabelsTest(responses){
   $('#pic-labels').empty();
-  var intro = "";
+  var intro;
   $('#pic-labels').append('<span>'+'Your photo '+'</span>');
   for(var i=0; i < responses.Labels.length; i++){
     var theLabel = responses.Labels[i].Name[0]; 
@@ -37,15 +37,32 @@ function printLabelsTest(responses){
     } 
     else{
       intro = " has a ";
-    }  
-    $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+','+'</span>';
-    // $('#pic-labels').append('<li>' + '<p>' + ' ' + intro + ' ' +
-    //  '</p>' + responses.Labels[i].Name + '</li>');
+    }
+    $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+'</span>';
   }
   $('#pic-labels').append('<span>'+' in it.'+'</span>');    
 }
 
 $(document).ready( function(){
+
+    $('#rekog-button').click(function(){
+      $('#rekog-link').fadeOut(300);
+      $('#signIn-link').fadeOut(300);
+      $('#rekog-block').fadeIn(600);
+    });
+
+    $('#signIn-button').click(function(){
+      $('#signIn-link').fadeOut(300);
+      $('#rekog-link').fadeOut(300);
+      $('#signIn-block').fadeIn(600);
+    });
+
+    $('.back-button').click(function(){
+      $('#signIn-block').fadeOut(300);
+      $('#rekog-block').fadeOut(300);
+      $('#signIn-link').fadeIn(600);
+      $('#rekog-link').fadeIn(600);
+    });
 
     document.getElementById("image").onchange = function() {
       var file = document.getElementById("image").files[0]
@@ -66,7 +83,7 @@ $(document).ready( function(){
 
             }
           }
-          
+
           xhr.send() 
 
         })
