@@ -28,6 +28,7 @@ function sign_request(file, done) {
 function printLabelsTest(responses){
   $('#pic-labels').empty();
   var intro;
+  
   $('#pic-labels').append('<span>'+'Your photo '+'</span>');
   for(var i=0; i < responses.Labels.length; i++){
     var theLabel = responses.Labels[i].Name[0]; 

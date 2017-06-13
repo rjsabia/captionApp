@@ -1,8 +1,28 @@
 #rekog-block{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	color: white;
 	display: none;
 	background-color: grey;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 }
 #signIn-block{
 	display: none;
 	background-color: yellow;
+}
+#crop-pic{
+	margin: auto;
+	height: 70%;
+ 	width: 60%;
+ 	overflow: hidden;
+}
+img{
+	height: auto;
+	max-width: 100%;
+}
+#label-div{
+	margin: 10px auto 10px auto;
+	width: 60%;
 }

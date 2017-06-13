@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="client_styles/main.css">
     <link rel="stylesheet" href="client_styles/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
   <body>
@@ -10,6 +11,11 @@
     <header>
       
       <div id="header-wrapper">
+        <nav>
+          <ul>
+            <li><a href="/index.ejs">Account</a></li>
+          </ul>
+        </nav>
         
       </div>
 
@@ -20,28 +26,34 @@
       <br>Please select an image
       <input type="file" id="image">
       <br>
-      <img id="preview">
-      <br>
-      <div>
+      <div id="crop-pic">
+        <div id="pic-div">
+          <img id="preview">
+        </div>
+      </div>
+
+      <div id="label-div">
         <!-- <ul id="pic-labels"></ul> -->
         <p id="pic-labels"></p>
       </div>
-      
+
       <div>
         <button class="back-button">Back</button>
       </div>
 
     </div>
+      
+      
 
     <div id="rekog-link">
       <button id="rekog-button">Photo Scanner</button>
     </div>
 
     <div id="signIn-block">
-      <form action="#">
-             <!-- <div class="imgcontainer">
-                 <img src="images/lock.jpg" alt="Avatar" class="avatar">
-             </div> -->
+      <!-- <form action="#">
+        <div class="imgcontainer">
+          <img src="images/lock.jpg" alt="Avatar" class="avatar">
+        </div>
         <div class="input-div">
               
           <label class="label-text">username</label>
@@ -61,11 +73,11 @@
           <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
 
-      </form>
+      </form> --> 
 
-      <!-- <div>
+      <div>
         <button class="back-button">Back</button>
-      </div> -->
+      </div>
 
     </div>
 
