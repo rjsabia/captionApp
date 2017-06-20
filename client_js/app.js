@@ -47,12 +47,14 @@ function printLabelsTest(responses){
 $(document).ready( function(){
 
     $('#rekog-button').click(function(){
+      $('#vid-container').fadeOut(300);
       $('#rekog-link').fadeOut(300);
       $('#signIn-link').fadeOut(300);
       $('#rekog-block').fadeIn(600);
     });
 
     $('#signIn-button').click(function(){
+      $('#vid-container').fadeOut(300);
       $('#signIn-link').fadeOut(300);
       $('#rekog-link').fadeOut(300);
       $('#signIn-block').fadeIn(600);
@@ -61,6 +63,7 @@ $(document).ready( function(){
     $('.back-button').click(function(){
       $('#signIn-block').fadeOut(300);
       $('#rekog-block').fadeOut(300);
+      $('#vid-container').fadeIn(300);
       $('#signIn-link').fadeIn(600);
       $('#rekog-link').fadeIn(600);
     });

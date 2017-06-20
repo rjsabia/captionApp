@@ -4,22 +4,37 @@
     <link rel="stylesheet" href="client_styles/main.css">
     <link rel="stylesheet" href="client_styles/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
 </head>
 
   <body>
 
     <header>
+
+    <div>
+
+      <div id="logo-div"><h1 id="logo">Photo Babbel</h1></div>
       
-      <div id="header-wrapper">
-        <nav>
+      <nav>
+        <div id="nav-div">
           <ul>
-            <li><a href="/index.ejs">Account</a></li>
+            <li id="rekog-link">
+              <a id="rekog-button">Photo</a>
+            </li>
+            <li id="signIn-link">
+              <a id="signIn-button">Account</a> 
+            </li>
           </ul>
-        </nav>
-        
-      </div>
+        </div>
+      </nav>
+     
+     </div>
 
     </header>
+
+    <div id="vid-container">
+        <video autoplay loop src="images/Photographer_Vid1.mp4" id="banner-vid"></video>
+    </div>
 
     <div id="rekog-block">
       <h1>Image Scanned</h1>
@@ -42,18 +57,12 @@
       </div>
 
     </div>
-      
-      
-
-    <div id="rekog-link">
-      <button id="rekog-button">Photo Scanner</button>
-    </div>
 
     <div id="signIn-block">
-      <!-- <form action="#">
-        <div class="imgcontainer">
+      <form action="/users/" method="post">
+        <!-- <div class="imgcontainer">
           <img src="images/lock.jpg" alt="Avatar" class="avatar">
-        </div>
+        </div> -->
         <div class="input-div">
               
           <label class="label-text">username</label>
@@ -68,12 +77,11 @@
 
         </div>
 
-        <div class="cancel">
-          <button type="button" class="back-button">Cancel</button>
+        <div class="forgot-pw">
           <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
 
-      </form> --> 
+      </form> 
 
       <div>
         <button class="back-button">Back</button>
@@ -81,9 +89,13 @@
 
     </div>
 
-    <div id="signIn-link">
-      <button id="signIn-button">Account</button> 
-    </div>
+   <!--  <footer>
+      
+      <div id="foot-div">
+        <h1>Footer</h1>
+      </div>
+
+    </footer> -->
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>

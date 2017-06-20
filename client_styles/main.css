@@ -1,3 +1,11 @@
+*{
+	box-sizing: border-box;
+}
+html, body {
+  width: 100%; 
+  height:100%; 
+  overflow:hidden;
+}
 #rekog-block{
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
@@ -26,3 +34,55 @@ img{
 	margin: 10px auto 10px auto;
 	width: 60%;
 }
+#logo-div{
+	float: left;
+}
+#nav-div{
+	width: 100%;
+	height: 8%;
+	font-family: 'Droid Sans', sans-serif;
+	padding: 20px 25px 15px 0px;
+}
+li a{
+	transition: color 1.0s ease;
+	font-size: 22px;
+	color: black;
+}
+#logo{
+	margin: 15px 0px 15px 25px;
+	color: black;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 30px;
+	font-weight: 600;
+}
+#nav-div li{
+	display: inline;
+	float: right;
+	margin-right: 18px;
+}
+a:visited, a:active, {
+	text-decoration: none;
+}
+li a:hover{
+	color: #00e5e5;
+	cursor: pointer;
+}
+#vid-container{
+	clear: both;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+#banner-vid{
+  	height: 100%;
+  	width: 177.77777778vh; /* 100 * 16 / 9 */
+  	min-width: 100%;
+  	min-height: 56.25vw; /* 100 * 9 / 16 */
+}
+/*#foot-div{
+	width: 100%;
+	height: 15%;
+	font-size: 25px;
+	color: black;
+	background: white;
+	font-family: 'Droid Sans', sans-serif;
+}*/

@@ -1,47 +1,127 @@
-// server.js
+require('dotenv').config();
+var express = require('express')
+    , router = express()
+    , aws = require('aws-sdk');
+var path = require('path');
 
-// set up ======================================================================
-// get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 8080;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const {router: usersRouter} = require('./users');
 
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+mongoose.Promise = global.Promise;
 
-var configDB = require('./config/database.js');
+const {PORT, DATABASE_URL} = require('./config');
+const app = express();
 
-// configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+router.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname,'./index.html'))
+})
 
-require('./config/passport')(passport); // pass passport for configuration
+router.use('/js', express.static('client_js'));
 
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // get information from html forms
-app.use(bodyParser.urlencoded({ extended: true }));
+router.use('/client_styles', express.static('client_styles'));
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+router.use('/images', express.static('images'));
 
-// required for passport
-app.use(session({
-    secret: 'ilovescotchscotchyscotchscotch', // session secret
-    resave: true,
-    saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+console.log(process.env)
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+var S3_BUCKET = process.env.S3_BUCKET;
 
-// routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);
+router.get('/sign', function(req, res) {
+  aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+
+  var s3 = new aws.S3()
+  var options = {
+    Bucket: S3_BUCKET,
+    Key: req.query.file_name,
+    Expires: 60,
+    ContentType: req.query.file_type,
+    ACL: 'public-read'
+  }
+
+  s3.getSignedUrl('putObject', options, function(err, data){
+    if(err) return res.send('Error with S3')
+      
+      res.json({
+        signed_request: data,
+        url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name,
+        
+      })
+    })
+  })
+
+router.get('/api/rekog', function(req,res){
+  var request = require('request')
+
+  request({
+      uri:'https://b5hrtlne7l.execute-api.us-east-1.amazonaws.com/dev/analysis',
+      method:'POST',
+      json:true,
+      body:{ "bucket": S3_BUCKET, "imageName": req.query.file_name},
+      headers:{
+        'Content-Type':'application/json'
+      }
+    },function(error,response,body){
+      console.log(response.statusCode)
+      console.log(body)
+      res.status(response.statusCode).json(body);
+    }
+  )
+})
+// logging
+app.use(morgan('common'));
+
+app.use('/users/', usersRouter);
+
+app.use('*', function(req, res) {
+  return res.status(404).json({message: 'Not Found'});
+});
+
+// referenced by both runServer and closeServer. closeServer
+// assumes runServer has run and set `server` to a server object
+let server;
+
+function runServer() {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(DATABASE_URL, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(PORT, () => {
+        console.log(`Your app is listening on port ${PORT}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    });
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+};
+
+router.listen(3000);
+module.exports = {router, app, runServer, closeServer};
+
+// router.listen(3000);
+// module.exports = router
