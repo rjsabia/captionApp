@@ -47,14 +47,20 @@ function printLabelsTest(responses){
 $(document).ready( function(){
 
     $('#rekog-button').click(function(){
+      $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
+      $('#story-content').fadeOut(300);
+      $('#foot-div').fadeOut(300);
       $('#rekog-link').fadeOut(300);
       $('#signIn-link').fadeOut(300);
       $('#rekog-block').fadeIn(600);
     });
 
     $('#signIn-button').click(function(){
+      $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
+      $('#story-content').fadeOut(300);
+      $('#foot-div').fadeOut(300);
       $('#signIn-link').fadeOut(300);
       $('#rekog-link').fadeOut(300);
       $('#signIn-block').fadeIn(600);
@@ -63,6 +69,9 @@ $(document).ready( function(){
     $('.back-button').click(function(){
       $('#signIn-block').fadeOut(300);
       $('#rekog-block').fadeOut(300);
+      $('#header-container').fadeIn(300);
+      $('#story-content').fadeIn(300);
+      $('#foot-div').fadeIn(300);
       $('#vid-container').fadeIn(300);
       $('#signIn-link').fadeIn(600);
       $('#rekog-link').fadeIn(600);
