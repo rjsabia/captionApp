@@ -44,6 +44,33 @@ function printLabelsTest(responses){
   $('#pic-labels').append('<span>'+' in it.'+'</span>');    
 }
 
+function addUser(firstName, lastName, username, password, callback) {
+  $.ajax({
+    url: "/users",
+    contentType: 'application/json',
+    type: 'POST',
+    dataType: 'json',
+    data: JSON.stringify(
+      {
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      password: password
+      }
+    ),
+    success: function(data) {
+      callback();
+    },
+    error: function(error) {
+      let errorString = error.responseText.split(':')[1];
+      let errorStringEdit = errorString.substring(1).slice(0, errorString.length -3)
+      alert(errorStringEdit);
+    }
+  });
+}
+
+
+
 $(document).ready( function(){
 
     $('#rekog-button').click(function(){
@@ -66,15 +93,31 @@ $(document).ready( function(){
       $('#signIn-block').fadeIn(600);
     });
 
+    $('#register-button').click(function(){
+      event.preventDefault();
+      $('#signIn-block').fadeOut(300);
+      $('#sign-up').fadeIn(600);
+    });
+
     $('.back-button').click(function(){
       $('#signIn-block').fadeOut(300);
       $('#rekog-block').fadeOut(300);
+      $('#sign-up').fadeOut(300);
       $('#header-container').fadeIn(300);
       $('#story-content').fadeIn(300);
       $('#foot-div').fadeIn(300);
       $('#vid-container').fadeIn(300);
       $('#signIn-link').fadeIn(600);
       $('#rekog-link').fadeIn(600);
+    });
+
+    $('.register').submit(function(event) {
+      let firstName = $('.register').find('#firstName').val();
+      let lastName = $('.register').find('#lastName').val();
+      let username = $('.register').find('#username').val();
+      let password = $('.register').find('#password').val();
+      addUser(firstName, lastName, username, password, replaceSignUp);
+      return false;
     });
 
     document.getElementById("image").onchange = function() {

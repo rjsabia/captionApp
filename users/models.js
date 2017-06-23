@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const STATE_ABBREVIATIONS = Object.keys(require('./state-abbreviations'));
-
 const UserSchema = mongoose.Schema({
+  firstName: {type: String, default: ""},
+  lastName: {type: String, default: ""},
   username: {
     type: String,
     required: true,
@@ -15,12 +15,11 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  firstName: {type: String, default: ""},
-  lastName: {type: String, default: ""}
 });
 
 UserSchema.methods.apiRepr = function() {
   return {
+    id: this._id,
     username: this.username || '',
     firstName: this.firstName || '',
     lastName: this.lastName || ''
@@ -28,11 +27,15 @@ UserSchema.methods.apiRepr = function() {
 }
 
 UserSchema.methods.validatePassword = function(password) {
-  return bcrypt.compare(password, this.password);
+  return bcrypt
+    .compare(password, this.password)
+    .then(isValid => isValid);
 }
 
 UserSchema.statics.hashPassword = function(password) {
-  return bcrypt.hash(password, 10);
+  return bcrypt
+    .hash(password, 10)
+    .then(hash => hash);
 }
 
 const User = mongoose.model('User', UserSchema);

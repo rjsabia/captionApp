@@ -1,5 +1,5 @@
 <head>
-    <title>Limitless Image Upload</title>
+    <title>Photo Babble</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="client_styles/main.css">
     <link rel="stylesheet" href="client_styles/reset.css">
@@ -20,7 +20,10 @@
           <div id="nav-div">
             <ul>
               <li id="rekog-link">
-                <a id="rekog-button">Photo</a>
+                <a id="rekog-button">Demo</a>
+              </li>
+              <li id="about-link">
+                <a id="about-button">About</a>
               </li>
               <li id="signIn-link">
                 <a id="signIn-button">Account</a> 
@@ -35,6 +38,7 @@
 
     <div id="vid-container">
         <div>
+        <!-- play once and pause on women??? -->
         <video autoplay loop src="images/Photographer_Vid1.mp4" id="banner-vid"></video>
         </div>
        
@@ -73,29 +77,45 @@
     </div>
 
     <div id="signIn-block">
-      <form action="/users/" method="post">
-        <!-- <div class="imgcontainer">
-          <img src="images/lock.jpg" alt="Avatar" class="avatar">
-        </div> -->
-        <div class="input-div">
-              
-          <label class="label-text">username</label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
-          <label class="label-text">password</label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-              
-          <div id = "login-wrapper">
-            <button id = "login-button" type="submit">Login</button>
-            <button id = "create-button" type="submit">Register</button>
-          </div>
-
+      <form class="login-form" action="/users/login" method="post" autocomplete="off">
+        <h1>Welcome Photo Babbler</h1>
+        <div id="user-name">
+          <h3>Username</h3>
+          <input type="text" name="username" placeholder="enter your username">
+        </div>
+        <div id="the-pw">
+          <h3>Password</h3>
+          <input type="text" name="password" placeholder="enter your password">
         </div>
 
-        <div class="forgot-pw">
-          <span class="psw">Forgot <a href="#">password?</a></span>
+        <button type='submit' id="log-in-button">LogIn</button>
+            
+        <div id="or-register">
+          <h3>New to Photo Babble, register for a free account.</h3>
+            <button id="register-button">Register</button>
         </div>
 
-      </form> 
+      </form>
+
+      <div>
+        <button class="back-button">Back</button>
+      </div>
+
+    </div>
+
+    <div id="sign-up">
+      <form class="register" action="/users" method="post" autocomplete="off">
+        
+        <fieldset name="register-info">
+          <input type="text" name="name" id="firstName" placeholder="First Name" required/>
+          <input type="text" name="name" id="lastName" placeholder="Last Name" required/>
+          <input type="text" name="username" id="username" placeholder="Username" required/>
+          <input type="password" name="password" id="password" placeholder="Password" required/>
+        </fieldset>
+        
+        <button type='submit' class="sign-up-button">Sign Up</button>
+      
+      </form>
 
       <div>
         <button class="back-button">Back</button>

@@ -10,31 +10,26 @@ const router = express.Router();
 router.use(jsonParser);
 
 
-// NB: at time of writing, passport uses callbacks, not promises
-const basicStrategy = new BasicStrategy((username, password, callback) => {
-  let user;
-  User
-    .findOne({username: username})
-    .exec()
-    .then(_user => {
-      user = _user;
-      if (!user) {
-        return callback(null, false, {message: 'Incorrect username'});
-      }
-      return user.validatePassword(password);
-    })
-    .then(isValid => {
-      if (!isValid) {
-        return callback(null, false, {message: 'Incorrect password'});
-      }
-      else {
-        return callback(null, user)
-      }
-    });
+const strategy = new BasicStrategy(
+  (username, password, cb) => {
+    User
+      .findOne({username})
+      .exec()
+      .then(user => {
+        if (!user) {
+          return cb(null, false, {
+            message: 'Incorrect username'
+          });
+        }
+        if (user.password !== password) {
+          return cb(null, false, 'Incorrect password');
+        }
+        return cb(null, user);
+      })
+      .catch(err => cb(err))
 });
 
-passport.use(basicStrategy);
-router.use(passport.initialize());
+passport.use(strategy);
 
 router.post('/', (req, res) => {
   if (!req.body) {
@@ -78,7 +73,7 @@ router.post('/', (req, res) => {
     .exec()
     .then(count => {
       if (count > 0) {
-        return res.status(422).json({message: 'username already taken'});
+        return res.status(422).json({message: 'Username already taken'});
       }
       // if no existing user, hash password
       return User.hashPassword(password)
@@ -113,12 +108,51 @@ router.get('/', (req, res) => {
 });
 
 
+// NB: at time of writing, passport uses callbacks, not promises
+const basicStrategy = new BasicStrategy(function(username, password, callback) {
+  let user;
+  User
+    .findOne({username: username})
+    .exec()
+    .then(_user => {
+      user = _user;
+      if (!user) {
+        return callback(null, false, {message: 'Incorrect username'});
+      }
+      return user.validatePassword(password);
+    })
+    .then(isValid => {
+      if (!isValid) {
+        return callback(null, false, {message: 'Incorrect password'});
+      }
+      else {
+        return callback(null, user)
+      }
+    });
+});
 
 
-router.get('/me',
-  passport.authenticate('basic', {session: false}),
-  (req, res) => res.json({user: req.user.apiRepr()})
+passport.use(basicStrategy);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+router.use(passport.initialize());
+
+router.post('/login',
+  passport.authenticate('basic', {session: true}),
+  (req, res) => {
+    console.log("req", req);
+    console.log("res", res);
+    res.json({user: req.user.apiRepr()});
+    res.redirect('/dashboard');
+    res.status(200).json({user: req.user.apiRepr()})
+  }
 );
-
 
 module.exports = {router};

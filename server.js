@@ -7,21 +7,22 @@ var path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const {router: usersRouter} = require('./users');
-
-mongoose.Promise = global.Promise;
+const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const {PORT, DATABASE_URL} = require('./config');
+
 const app = express();
+
+const {router: usersRouter} = require('./users');
 
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname,'./index.html'))
 })
 
 router.use('/js', express.static('client_js'));
-
 router.use('/client_styles', express.static('client_styles'));
-
 router.use('/images', express.static('images'));
 
 console.log(process.env)
@@ -71,6 +72,45 @@ router.get('/api/rekog', function(req,res){
     }
   )
 })
+// test code for login
+app.use(morgan('common'));
+app.use(bodyParser.json());
+
+app.use(session({ 
+  secret: 'picture',
+  resave: true,
+  saveUninitialized: true }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+mongoose.Promise = global.Promise;
+
+app.get('/logout', function (req, res){
+  req.logout();
+  req.session.destroy(function (err) {
+    res.redirect('/');
+  });
+});
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
+app.get('/dashboard',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    res.sendFile(__dirname + '/dashboard.html');
+  }
+);
+
+app.use('/users/', usersRouter);
+
+app.use('*', function(req, res) {
+  res.status(404).json({message: 'Not Found'});
+});
+
+// ******************************
 // logging
 app.use(morgan('common'));
 
