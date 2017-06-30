@@ -19,12 +19,13 @@ html, body {
 #signIn-block{
 	display: none;
 	background-color: #6C648B;
+	height: 100%;
 }
 /*#sign-up{
 	display: none;
 	background-color: tan;
 }*/
-/*testing new login style*/
+/*login/register form styles*/
 .login-page {
   	width: 360px;
   	padding: 8% 0 0;
@@ -44,7 +45,7 @@ html, body {
 .form h1{
     font-family: 'Montserrat', sans-serif;
     color: white;
-    font-size: 26px;
+    font-size: 30px;
     margin-bottom: 25px; 
 }
 .form input {
@@ -57,11 +58,10 @@ html, body {
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
 }
 .form button {
     font-family: 'Droid Sans', sans-serif;
-    /*text-transform: uppercase;*/
     outline: 0;
     background: #FBA100;
     width: 100%;
@@ -69,7 +69,7 @@ html, body {
     border-radius: 4px;
     padding: 15px;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 22px;
     -webkit-transition: all 0.7s ease;
     transition: all 0.7s ease;
     cursor: pointer;
@@ -80,10 +80,10 @@ html, body {
 .form .message {
     margin: 15px 0 0;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 .form .message a {
-    font-size: 18px;
+    font-size: 20px;
     color: #6C648B;
     text-decoration: none;
     -webkit-transition: all 0.7s ease;
@@ -92,6 +92,20 @@ html, body {
 .form .message a:hover{
 	cursor: pointer;
 	color: #FBA100;
+}
+.back-button a{
+	color: white;
+	font-size: 25px;
+	-webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+.back-button a:hover{
+	color: #FBA100;
+	cursor: pointer;
+}
+#cancel{
+	margin-top: 15px;
+	font-family: 'Montserrat', sans-serif;
 }
 .form .register-form {
     display: none;

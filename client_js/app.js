@@ -114,13 +114,9 @@ $(document).ready( function(){
       $('#signIn-block').fadeIn(600);
     });
 
-    // $('#register-button').click(function(){
-    //   event.preventDefault();
-    //   $('#signIn-block').fadeOut(300);
-    //   $('#sign-up').fadeIn(600);
-    // });
-
     $('.back-button').click(function(){
+      $('.register-form')[0].reset();
+      $('.login-form')[0].reset();
       $('#signIn-block').fadeOut(300);
       $('#rekog-block').fadeOut(300);
       $('#sign-up').fadeOut(300);
