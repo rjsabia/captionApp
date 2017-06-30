@@ -2,9 +2,7 @@ const {BasicStrategy} = require('passport-http');
 const express = require('express');
 const jsonParser = require('body-parser').json();
 const passport = require('passport');
-
 const {User} = require('./models');
-
 const router = express.Router();
 
 router.use(jsonParser);
@@ -30,8 +28,31 @@ const strategy = new BasicStrategy(
 });
 
 passport.use(strategy);
+// passport.use(basicStrategy);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+router.use(passport.initialize());
+
+router.post('/login',
+  passport.authenticate('basic', {session: true}),
+  (req, res) => {
+    // console.log("req", req);
+    // console.log("res", res);
+    // res.json({user: req.user.apiRepr()});
+    res.redirect('./dashboard.html');
+    // res.status(200).json({user: req.user.apiRepr()})
+  }
+);
 
 router.post('/', (req, res) => {
+  console.log(req.body);
   if (!req.body) {
     return res.status(400).json({message: 'No request body'});
   }
@@ -109,50 +130,50 @@ router.get('/', (req, res) => {
 
 
 // NB: at time of writing, passport uses callbacks, not promises
-const basicStrategy = new BasicStrategy(function(username, password, callback) {
-  let user;
-  User
-    .findOne({username: username})
-    .exec()
-    .then(_user => {
-      user = _user;
-      if (!user) {
-        return callback(null, false, {message: 'Incorrect username'});
-      }
-      return user.validatePassword(password);
-    })
-    .then(isValid => {
-      if (!isValid) {
-        return callback(null, false, {message: 'Incorrect password'});
-      }
-      else {
-        return callback(null, user)
-      }
-    });
-});
+// const basicStrategy = new BasicStrategy(function(username, password, callback) {
+//   let user;
+//   User
+//     .findOne({username: username})
+//     .exec()
+//     .then(_user => {
+//       user = _user;
+//       if (!user) {
+//         return callback(null, false, {message: 'Incorrect username'});
+//       }
+//       return user.validatePassword(password);
+//     })
+//     .then(isValid => {
+//       if (!isValid) {
+//         return callback(null, false, {message: 'Incorrect password'});
+//       }
+//       else {
+//         return callback(null, user)
+//       }
+//     });
+// });
 
 
-passport.use(basicStrategy);
+// passport.use(basicStrategy);
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
+// passport.deserializeUser(function(user, done) {
+//   done(null, user);
+// });
 
-router.use(passport.initialize());
+// router.use(passport.initialize());
 
-router.post('/login',
-  passport.authenticate('basic', {session: true}),
-  (req, res) => {
-    console.log("req", req);
-    console.log("res", res);
-    res.json({user: req.user.apiRepr()});
-    res.redirect('/dashboard');
-    res.status(200).json({user: req.user.apiRepr()})
-  }
-);
+// router.post('/login',
+//   passport.authenticate('basic', {session: true}),
+//   (req, res) => {
+//     // console.log("req", req);
+//     // console.log("res", res);
+//     // res.json({user: req.user.apiRepr()});
+//     res.redirect('./dashboard.html');
+//     // res.status(200).json({user: req.user.apiRepr()})
+//   }
+// );
 
 module.exports = {router};

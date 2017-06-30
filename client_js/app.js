@@ -46,7 +46,7 @@ function printLabelsTest(responses){
 
 function addUser(firstName, lastName, username, password, callback) {
   $.ajax({
-    url: "/users",
+    url: "http://localhost:8080/users/",
     contentType: 'application/json',
     type: 'POST',
     dataType: 'json',
@@ -59,17 +59,34 @@ function addUser(firstName, lastName, username, password, callback) {
       }
     ),
     success: function(data) {
-      callback();
+      callback(data);
     },
     error: function(error) {
-      let errorString = error.responseText.split(':')[1];
-      let errorStringEdit = errorString.substring(1).slice(0, errorString.length -3)
-      alert(errorStringEdit);
+      console.log(error);
     }
   });
 }
 
-
+function logIn(username, password, callback) {
+  $.ajax({
+    url: "http://localhost:8080/users/login",
+    contentType: 'application/json',
+    type: 'POST',
+    dataType: 'json',
+    data: JSON.stringify(
+      {
+      username: username,
+      password: password
+      }
+    ),
+    success: function(data) {
+      callback(data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
 
 $(document).ready( function(){
 
@@ -83,6 +100,10 @@ $(document).ready( function(){
       $('#rekog-block').fadeIn(600);
     });
 
+    $('.message a').click(function(){
+      $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+
     $('#signIn-button').click(function(){
       $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
@@ -93,11 +114,11 @@ $(document).ready( function(){
       $('#signIn-block').fadeIn(600);
     });
 
-    $('#register-button').click(function(){
-      event.preventDefault();
-      $('#signIn-block').fadeOut(300);
-      $('#sign-up').fadeIn(600);
-    });
+    // $('#register-button').click(function(){
+    //   event.preventDefault();
+    //   $('#signIn-block').fadeOut(300);
+    //   $('#sign-up').fadeIn(600);
+    // });
 
     $('.back-button').click(function(){
       $('#signIn-block').fadeOut(300);
@@ -112,12 +133,29 @@ $(document).ready( function(){
     });
 
     $('.register').submit(function(event) {
+      event.preventDefault();
       let firstName = $('.register').find('#firstName').val();
+      console.log(firstName);
       let lastName = $('.register').find('#lastName').val();
+      console.log(lastName);
       let username = $('.register').find('#username').val();
+      console.log(username);
       let password = $('.register').find('#password').val();
-      addUser(firstName, lastName, username, password, replaceSignUp);
-      return false;
+      console.log(password);
+      addUser(firstName, lastName, username, password, function(data){
+        console.log(data);
+      });
+    });
+
+    $('.login-form').submit(function(event) {
+      event.preventDefault();
+      let username = $('.login-form').find('#login-username').val();
+      console.log(username);
+      let password = $('.login-form').find('#login-pw').val();
+      console.log(password);
+      logIn(username, password, function(loginData){
+        console.log(loginData);
+      });
     });
 
     document.getElementById("image").onchange = function() {

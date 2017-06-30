@@ -72,6 +72,10 @@ router.get('/api/rekog', function(req,res){
     }
   )
 })
+
+var cors = require('cors');
+app.use(cors());
+app.use('/users', usersRouter);
 // test code for login
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -94,32 +98,22 @@ app.get('/logout', function (req, res){
   });
 });
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/public/index.html');
-// });
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + './index.html');
+});
+
 app.get('/dashboard',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
-    res.sendFile(__dirname + '/dashboard.html');
+    res.sendFile(__dirname + './dashboard.html');
   }
 );
-
-app.use('/users/', usersRouter);
 
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
 });
 
 // ******************************
-// logging
-app.use(morgan('common'));
-
-app.use('/users/', usersRouter);
-
-app.use('*', function(req, res) {
-  return res.status(404).json({message: 'Not Found'});
-});
-
 // referenced by both runServer and closeServer. closeServer
 // assumes runServer has run and set `server` to a server object
 let server;
