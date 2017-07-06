@@ -19,23 +19,52 @@ html, body {
 #signIn-block{
 	display: none;
 	background-color: #6C648B;
-	height: 100%;
+	min-height: 100%;
 }
-/*#sign-up{
-	display: none;
-	background-color: tan;
-}*/
 /*login/register form styles*/
 .login-page {
-  	width: 360px;
+  	/*width: 360px;*/
+  	height: 99%;
+  	width: 45%;
   	padding: 8% 0 0;
   	margin: auto;
+}
+@media (max-width: 1024px){
+	.login-page{
+		width: 60%;
+	}
+}
+@media (max-width: 780px){
+	.login-page{
+		width: 75%;
+	}
+}
+@media (max-width: 612px){
+	.login-page{
+		width: 85%;
+	}
+	.form h1{
+		font-size: 28px;
+		/*height: 100%;*/
+	}
+	.form .message{
+		font-size: 24px;
+	}
+	.form .message a{
+		font-size: 24px;
+	}
+}
+@media (max-width: 400px){
+	.login-page{
+		width: 92%;
+	}
 }
 .form {
 	position: relative;
     z-index: 1;
 	background: #6BBAA7;
-    max-width: 360px;
+    /*max-width: 360px;*/
+    /*height: 100%;*/
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
@@ -57,8 +86,14 @@ html, body {
     border-radius: 4px;
     margin: 0 0 15px;
     padding: 15px;
+    box-shadow: none;
     box-sizing: border-box;
-    font-size: 16px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+.form input:active,.form input:focus{
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form button {
     font-family: 'Droid Sans', sans-serif;
@@ -70,8 +105,8 @@ html, body {
     padding: 15px;
     color: #FFFFFF;
     font-size: 22px;
-    -webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
     cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
@@ -93,11 +128,14 @@ html, body {
 	cursor: pointer;
 	color: #FBA100;
 }
+.form .message a:visited{
+	text-decoration: none;
+}
 .back-button a{
 	color: white;
 	font-size: 25px;
-	-webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
+	-webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 .back-button a:hover{
 	color: #FBA100;
@@ -247,14 +285,14 @@ li a:hover{
 #story-content{
 	height: 50%;
 	width: 100%;
-	background-color: #6BBAA7;
+	background-color: white;
 }
 #foot-div{
 	width: 100%;
 	height: 15%;
 	font-size: 25px;
 	color: black;
-	background: white;
+	background: #6BBAA7;
 	font-family: 'Droid Sans', sans-serif;
 	text-align: center;
 }

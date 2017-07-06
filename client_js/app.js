@@ -73,12 +73,16 @@ function logIn(username, password, callback) {
     contentType: 'application/json',
     type: 'POST',
     dataType: 'json',
-    data: JSON.stringify(
-      {
+    data: {
       username: username,
       password: password
-      }
-    ),
+    },
+    // data: JSON.stringify(
+    //   {
+    //   username: username,
+    //   password: password
+    //   }
+    // ),
     success: function(data) {
       callback(data);
     },
@@ -128,7 +132,7 @@ $(document).ready( function(){
       $('#rekog-link').fadeIn(600);
     });
 
-    $('.register').submit(function(event) {
+    $('.register-form').submit(function(event) {
       event.preventDefault();
       let firstName = $('.register').find('#firstName').val();
       console.log(firstName);

@@ -1,55 +1,90 @@
-const {BasicStrategy} = require('passport-http');
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+
+
+// const {BasicStrategy} = require('passport-http');
 const express = require('express');
 const jsonParser = require('body-parser').json();
-const passport = require('passport');
+const urlParser = require('body-parser').urlencoded({extended: false});
+// const passport = require('passport');
 const {User} = require('./models');
 const router = express.Router();
 
+const app = express();
+
+router.use(urlParser);
 router.use(jsonParser);
 
 
-const strategy = new BasicStrategy(
-  (username, password, cb) => {
-    User
-      .findOne({username})
-      .exec()
-      .then(user => {
-        if (!user) {
-          return cb(null, false, {
-            message: 'Incorrect username'
-          });
-        }
-        if (user.password !== password) {
-          return cb(null, false, 'Incorrect password');
-        }
-        return cb(null, user);
-      })
-      .catch(err => cb(err))
-});
+// const strategy = new BasicStrategy(
+//   (username, password, cb) => {
+//     console.log(username, password, 'youpass')
+//     User
+//       .findOne({username})
+//       .exec()
+//       .then(user => {
+//         console.log(user, 'user');
+//         if (!user) {
+//           return cb(null, false, {
+//             message: 'Incorrect username'
+//           });
+//         }
+//         if (user.password !== password) {
+//           return cb(null, false, 'Incorrect password');
+//         }
+//         return cb(null, user);
+//       })
+//       .catch(err => cb(err))
+// });
 
-passport.use(strategy);
-// passport.use(basicStrategy);
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-router.use(passport.initialize());
-
-router.post('/login',
-  passport.authenticate('basic', {session: true}),
-  (req, res) => {
-    // console.log("req", req);
-    // console.log("res", res);
-    // res.json({user: req.user.apiRepr()});
-    res.redirect('./dashboard.html');
-    // res.status(200).json({user: req.user.apiRepr()})
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
   }
+));
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/dashboard.html',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
 );
+// passport.use(basicStrategy);
+// router.use(passport.initialize());
+
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
+
+// passport.deserializeUser(function(user, done) {
+//   done(null, user);
+// });
+
+// passport.use(strategy);
+
+// router.post('/login', function(req, res, next){
+//   console.log(req.body, 'body');
+//   console.log(req.query, 'query');
+//   next();
+// },
+//   passport.authenticate('basic', {session: false}),
+//   (req, res) => {
+//     // console.log("req", req);
+//     // console.log("res", res);
+//     // res.json({user: req.user.apiRepr()});
+//     res.redirect('./dashboard.html');
+//     // res.status(200).json({user: req.user.apiRepr()})
+//   }
+// );
 
 router.post('/', (req, res) => {
   console.log(req.body);
