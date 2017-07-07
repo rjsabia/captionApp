@@ -73,18 +73,10 @@ function logIn(username, password, callback) {
     contentType: 'application/json',
     type: 'POST',
     dataType: 'json',
-    data: {
-      username: username,
-      password: password
-    },
-    // data: JSON.stringify(
-    //   {
-    //   username: username,
-    //   password: password
-    //   }
-    // ),
+    data: JSON.stringify({ username: username, password: password}), 
     success: function(data) {
-      callback(data);
+      // callback(data);
+      window.location = '/public/dashboard.html';
     },
     error: function(error) {
       console.log(error);

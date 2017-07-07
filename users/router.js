@@ -1,9 +1,6 @@
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
-
-
-// const {BasicStrategy} = require('passport-http');
 const express = require('express');
 const jsonParser = require('body-parser').json();
 const urlParser = require('body-parser').urlencoded({extended: false});
@@ -13,30 +10,26 @@ const router = express.Router();
 
 const app = express();
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+router.use(require('express-session')({
+  secret: 'something something',
+  resave: false,
+  saveUninitialized: false
+}));
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+
 router.use(urlParser);
 router.use(jsonParser);
-
-
-// const strategy = new BasicStrategy(
-//   (username, password, cb) => {
-//     console.log(username, password, 'youpass')
-//     User
-//       .findOne({username})
-//       .exec()
-//       .then(user => {
-//         console.log(user, 'user');
-//         if (!user) {
-//           return cb(null, false, {
-//             message: 'Incorrect username'
-//           });
-//         }
-//         if (user.password !== password) {
-//           return cb(null, false, 'Incorrect password');
-//         }
-//         return cb(null, user);
-//       })
-//       .catch(err => cb(err))
-// });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -45,7 +38,7 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (!user.validatePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
@@ -53,38 +46,13 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/dashboard.html',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
+router.post('/login',
+    passport.authenticate('local', {session: true, failureRedirect: '/login'}),
+        (req, res) => {
+            res.json({user: req.user.apiRepr(), message: 'Sign in successful'});
+        }
 );
-// passport.use(basicStrategy);
-// router.use(passport.initialize());
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.deserializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.use(strategy);
-
-// router.post('/login', function(req, res, next){
-//   console.log(req.body, 'body');
-//   console.log(req.query, 'query');
-//   next();
-// },
-//   passport.authenticate('basic', {session: false}),
-//   (req, res) => {
-//     // console.log("req", req);
-//     // console.log("res", res);
-//     // res.json({user: req.user.apiRepr()});
-//     res.redirect('./dashboard.html');
-//     // res.status(200).json({user: req.user.apiRepr()})
-//   }
-// );
 
 router.post('/', (req, res) => {
   console.log(req.body);
@@ -151,10 +119,6 @@ router.post('/', (req, res) => {
     });
 });
 
-// never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
 router.get('/', (req, res) => {
   return User
     .find()
@@ -164,51 +128,5 @@ router.get('/', (req, res) => {
 });
 
 
-// NB: at time of writing, passport uses callbacks, not promises
-// const basicStrategy = new BasicStrategy(function(username, password, callback) {
-//   let user;
-//   User
-//     .findOne({username: username})
-//     .exec()
-//     .then(_user => {
-//       user = _user;
-//       if (!user) {
-//         return callback(null, false, {message: 'Incorrect username'});
-//       }
-//       return user.validatePassword(password);
-//     })
-//     .then(isValid => {
-//       if (!isValid) {
-//         return callback(null, false, {message: 'Incorrect password'});
-//       }
-//       else {
-//         return callback(null, user)
-//       }
-//     });
-// });
-
-
-// passport.use(basicStrategy);
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// passport.deserializeUser(function(user, done) {
-//   done(null, user);
-// });
-
-// router.use(passport.initialize());
-
-// router.post('/login',
-//   passport.authenticate('basic', {session: true}),
-//   (req, res) => {
-//     // console.log("req", req);
-//     // console.log("res", res);
-//     // res.json({user: req.user.apiRepr()});
-//     res.redirect('./dashboard.html');
-//     // res.status(200).json({user: req.user.apiRepr()})
-//   }
-// );
-
 module.exports = {router};
+ 

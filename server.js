@@ -19,8 +19,9 @@ const {router: usersRouter} = require('./users');
 
 router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname,'./index.html'))
-})
+});
 
+router.use('/public', express.static('public'));
 router.use('/js', express.static('client_js'));
 router.use('/client_styles', express.static('client_styles'));
 router.use('/images', express.static('images'));
@@ -102,7 +103,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + './index.html');
 });
 
-app.get('/dashboard',
+app.get('public/dashboard',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.sendFile(__dirname + './dashboard.html');
