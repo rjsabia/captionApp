@@ -207,7 +207,7 @@ img{
 }
 li a{
 	transition: color 0.7s ease;
-	font-size: 18px;
+	font-size: 20px;
 	color: white;
 }
 #header-container{
@@ -222,7 +222,7 @@ li a{
 	margin: 15px 0px 15px 25px;
 	font-family: 'Droid Sans', sans-serif;
 	font-size: 28px;
-	font-weight: 500;
+	font-weight: 700;
 }
 #nav-div li{
 	display: inline;
@@ -285,7 +285,6 @@ li a:hover{
 #vid-container{
 	clear: both;
 	width: 100%;
-	height: auto;
 }
 video{
 	width: 100% !important;
@@ -308,7 +307,7 @@ video{
 	text-align: center;
 	padding: 10px 5px 10px 5px;
 }
-#bottom-content{
+/*#bottom-content{
 	position: relative;
 	left: 25%;
 	top: -480px;
@@ -324,11 +323,58 @@ video{
 	width: 450px;
 	padding: 10px 5px 10px 5px;
 	text-align: center;
+}*/
+#content-wrapper{
+	width: 100%;
 }
-#story-content{
+#story-content-1{
 	height: 50%;
 	width: 100%;
 	background-color: white;
+	color: black;
+	text-align: center;
+	margin-top: -25px;
+	font-size: 40px;
+	font-weight: 400;
+	font-family: 'Droid Sans', sans-serif;
+	margin-bottom: 50px;
+}
+h2{
+	margin-bottom: 25px;
+}
+#story-content-1 p{
+	margin-bottom: 45px;
+}
+.stories{
+	font-size: 20px;
+	padding: 0% 20% 0% 20%;
+}
+#story-content-1 a{
+	font-size: 28px;
+	color: white;
+	border-radius: 25px;
+	padding: 10px;
+	/*margin-bottom: 100px;
+	margin-top: 20px;*/
+	background-color: #6BBAA7;
+	-webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+#story-demo-button{
+	margin-bottom: 50px;
+}
+#story-content-1 a:hover{
+	background-color: #6C648B;
+	cursor: pointer;
+}
+#story-content-2{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#story-content-2 img{
+	width: 100% !important;
+	height: auto !important;
 }
 #foot-div{
 	width: 100%;

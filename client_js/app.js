@@ -96,6 +96,7 @@ $(document).ready( function(){
     });
 
     $('.rekog-button').click(function(){
+      $('#story-section').fadeOut(300);
       $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
       $('#story-content').fadeOut(300);
@@ -110,6 +111,7 @@ $(document).ready( function(){
     });
 
     $('.signIn-button').click(function(){
+      $('#story-section').fadeOut(300);
       $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
       $('#story-content').fadeOut(300);
@@ -131,6 +133,7 @@ $(document).ready( function(){
       $('#vid-container').fadeIn(300);
       $('#signIn-link').fadeIn(600);
       $('#rekog-link').fadeIn(600);
+      $('#story-section').fadeIn(600);
     });
 
     $('.register-form').submit(function(event) {
