@@ -85,8 +85,17 @@ function logIn(username, password, callback) {
 }
 
 $(document).ready( function(){
+    // mobile menu functionality using sidr
+    $('#right-menu').sidr({
+      name: 'sidr-right',
+      side: 'right',
+    });
 
-    $('#rekog-button').click(function(){
+    $('.mobile-button').bind("click", function(){
+      $.sidr('close', 'sidr-right');
+    });
+
+    $('.rekog-button').click(function(){
       $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
       $('#story-content').fadeOut(300);
@@ -95,12 +104,12 @@ $(document).ready( function(){
       $('#signIn-link').fadeOut(300);
       $('#rekog-block').fadeIn(600);
     });
-
+    // form animation for signIn or register
     $('.message a').click(function(){
       $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
 
-    $('#signIn-button').click(function(){
+    $('.signIn-button').click(function(){
       $('#header-container').fadeOut(300);
       $('#vid-container').fadeOut(300);
       $('#story-content').fadeOut(300);
