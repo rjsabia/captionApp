@@ -84,7 +84,29 @@ function logIn(username, password, callback) {
   });
 }
 
+function setPlaySpeed() { 
+  var vid = document.getElementById("banner-vid");
+  vid.playbackRate = 0.75;
+} 
+
+// function slideShow(){
+//   $('#slideshow > div:gt(0)').hide();
+
+//   setInterval(function(){
+//     $('#slideshow > div:first')
+//       .fadeOut(500)
+//       .next()
+//       .fadeIn(500)
+//       .end()
+//       .appendTo('#slideshow');
+//       $(".eachVid")[0].src = src+"?autoplay=1";
+//   }, 14000);
+// }
+
 $(document).ready( function(){
+    // slideShow();
+    // video playrate control
+    setPlaySpeed();
     // mobile menu functionality using sidr
     $('#right-menu').sidr({
       name: 'sidr-right',

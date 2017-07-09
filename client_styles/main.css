@@ -18,12 +18,11 @@ html, body {
 }
 #signIn-block{
 	display: none;
-	background-color: #6C648B;
+	background-color: white;
 	min-height: 100%;
 }
 /*login/register form styles*/
 .login-page {
-  	/*width: 360px;*/
   	height: 99%;
   	width: 45%;
   	padding: 8% 0 0;
@@ -63,8 +62,7 @@ html, body {
 	position: relative;
     z-index: 1;
 	background: #6BBAA7;
-    /*max-width: 360px;*/
-    /*height: 100%;*/
+	opacity: 0.85;
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
@@ -293,10 +291,10 @@ video{
 #top-content{
 	position: relative;
 	left: 55%;
-	top: -675px;
+	top: -500px;
 	color: white;
 	background-color: #6BBAA7;
-	opacity: 0.55;
+	opacity: 0.75;
 	font-size: 50px;
 	font-weight: 400;
 	font-family: 'Josefin Sans', sans-serif;
@@ -307,23 +305,6 @@ video{
 	text-align: center;
 	padding: 10px 5px 10px 5px;
 }
-/*#bottom-content{
-	position: relative;
-	left: 25%;
-	top: -480px;
-	color: white;
-	background-color: #6C648B;
-	opacity: 0.55;
-	border-radius: 3px;
-	font-size: 50px;
-	font-weight: 400;
-	font-family: 'Josefin Sans', sans-serif;
-	z-index: 5000;
-	height: 180px;
-	width: 450px;
-	padding: 10px 5px 10px 5px;
-	text-align: center;
-}*/
 #content-wrapper{
 	width: 100%;
 }
@@ -340,22 +321,20 @@ video{
 	margin-bottom: 50px;
 }
 h2{
-	margin-bottom: 25px;
+	margin-bottom: 40px;
 }
 #story-content-1 p{
-	margin-bottom: 45px;
+	margin-bottom: 55px;
 }
 .stories{
 	font-size: 20px;
-	padding: 0% 20% 0% 20%;
+	padding: 0% 18% 0% 18%;
 }
 #story-content-1 a{
 	font-size: 28px;
 	color: white;
 	border-radius: 25px;
-	padding: 10px;
-	/*margin-bottom: 100px;
-	margin-top: 20px;*/
+	padding: 10px 20px 10px 20px;
 	background-color: #6BBAA7;
 	-webkit-transition: all 0.7s ease;
     transition: all 0.7s ease;
@@ -367,9 +346,12 @@ h2{
 	background-color: #6C648B;
 	cursor: pointer;
 }
+#story-2-wrapper{
+	clear: both;
+}
 #story-content-2{
 	width: 100%;
-	height: 100%;
+	height: auto;
 	overflow: hidden;
 }
 #story-content-2 img{
@@ -378,10 +360,10 @@ h2{
 }
 #foot-div{
 	width: 100%;
-	height: 15%;
-	font-size: 25px;
+	height: 200px;
+	font-size: 20px;
 	color: black;
-	background: #6BBAA7;
+	background: white;
 	font-family: 'Droid Sans', sans-serif;
 	text-align: center;
 }

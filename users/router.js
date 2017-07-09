@@ -31,6 +31,13 @@ router.use(passport.session());
 router.use(urlParser);
 router.use(jsonParser);
 
+// router.get('/logout', function (req, res){
+//   req.logout();
+//   req.session.destroy(function (err) {
+//     res.redirect('/');
+//   });
+// });
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function(err, user) {
