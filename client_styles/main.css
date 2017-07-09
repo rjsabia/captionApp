@@ -218,7 +218,7 @@ li a{
 }
 #logo{
 	margin: 15px 0px 15px 25px;
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Montserrat', sans-serif;;
 	font-size: 28px;
 	font-weight: 700;
 }
@@ -242,7 +242,7 @@ li a:hover{
 	margin-right: 18px;
 	padding: 20px 25px 15px 0px;
 	color: white;
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 25px;
 	text-decoration: none;
 }
@@ -290,20 +290,19 @@ video{
 }
 #top-content{
 	position: relative;
-	left: 55%;
-	top: -500px;
+	margin: 0px auto 0px auto;
+	padding: 20px;
+	top: -360px;
+	right: 15%;
 	color: white;
-	background-color: #6BBAA7;
-	opacity: 0.75;
-	font-size: 50px;
-	font-weight: 400;
-	font-family: 'Josefin Sans', sans-serif;
+	letter-spacing: 2px;
+	font-size: 40px;
+	font-weight: -100;
+	font-family: 'Montserrat', sans-serif;
 	z-index: 5000;
-	height: 180px;
-	width: 450px;
-	border-radius: 3px;
+	height: 130px;
+	width: 660px;
 	text-align: center;
-	padding: 10px 5px 10px 5px;
 }
 #content-wrapper{
 	width: 100%;
@@ -317,11 +316,14 @@ video{
 	margin-top: -25px;
 	font-size: 40px;
 	font-weight: 400;
-	font-family: 'Droid Sans', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	margin-bottom: 50px;
 }
 h2{
 	margin-bottom: 40px;
+	font-family: 'Montserrat', sans-serif;
+	color: #787878;
+	letter-spacing: 1px;
 }
 #story-content-1 p{
 	margin-bottom: 55px;
@@ -357,6 +359,32 @@ h2{
 #story-content-2 img{
 	width: 100% !important;
 	height: auto !important;
+}
+#bottom-content{
+	position: relative;
+	margin: 0px auto 0px auto;
+	padding: 20px;
+	top: -1000px;
+	color: #787878;
+	background-color: white;
+	letter-spacing: 2px;
+	font-size: 35px;
+	font-weight: -100;
+	font-family: 'Montserrat', sans-serif;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	z-index: 5000;
+	height: 180px;
+	width: 855px;
+	text-align: center;
+	border-radius: 25px;
+}
+#bottom-content h1{
+	margin-bottom: 25px;
+}
+#bottom-content p{
+	font-size: 19px;
+	margin-bottom: 8px;
+	color: black;
 }
 #foot-div{
 	width: 100%;
