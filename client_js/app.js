@@ -86,9 +86,21 @@ function logIn(username, password, callback) {
 
 function setPlaySpeed() { 
   var vid = document.getElementById("banner-vid");
-  vid.playbackRate = 0.75;
+  vid.playbackRate = 0.72;
 } 
 
+// function headerScroll(){
+//   $(function() {
+//       $(window).on("scroll", function() {
+//           if($(window).scrollTop() > 50) {
+//               $("#header-container").addClass("active");
+//           } else {
+//               //remove the background property so it comes transparent again (defined in your css)
+//              $("#header-container").removeClass("active");
+//           }
+//       });
+//   });
+// }
 // function slideShow(){
 //   $('#slideshow > div:gt(0)').hide();
 
@@ -116,6 +128,20 @@ $(document).ready( function(){
     $('.mobile-button').bind("click", function(){
       $.sidr('close', 'sidr-right');
     });
+    // header scroll animation
+    // $(window).scroll(function(){
+    //   var top=$(window).scrollTop()
+    //   /*put your color in background color */
+    //   if(top>10){ 
+    //     $('#header-container').css('background-color','white');
+    //     $('#header-container').css('color','black'); 
+    //   }
+    //   else{ 
+    //     $('#header-container').css('background-color','Transparent'); 
+    //     $('#header-container').css('color','white');
+    //   }
+
+    // }); 
 
     $('.rekog-button').click(function(){
       $('#story-section').fadeOut(300);

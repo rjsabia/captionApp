@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.light.css">
-    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 
 </head>
 
@@ -18,7 +17,9 @@
 
       <div id="header-container">
 
-        <div id="logo-div"><h1 id="logo">Photo Babble</h1></div>
+        <div id="logo-div">
+          <h1 id="logo">Photo Babble</h1>
+        </div>
         
         <nav>
           <div id="nav-div" class="desktop-menu">
@@ -74,18 +75,20 @@
     </div>
     
     <section id="story-section">
+    <div data-aos="zoom-in">
       <div id="story-content-1">
         <h2>You won't have to, we can do it for you.</h2>
-        <p class="stories">We use a deep learning neural network to scan your photos, and return the names of almost everything in your pictures!</p>
+        <p class="stories">We use <span>A.I.</span> to scan your photos, and return the names of almost everything in your pictures!</p>
         <div id="story-demo-button">
           <a class="rekog-button story-rekog-button">Try the demo</a>
         </div>
       </div>
+    </div>
       <div id="story-2-wrapper">
         <div id="story-content-2">
           <img src="images/phone_beach_bg.jpg" alt="smart phone taking picture of beach">
         </div>
-        <div id="bottom-content">
+        <div id="bottom-content" data-aos="zoom-in">
             <h1>So you can just snap your pics,</h1>
             <p>let our crazy cool tech return labels for what's in them,</p>
             <p>and then you can choose which labels to scan for in all of your photos</p>
@@ -94,13 +97,17 @@
     </section>
 
     <div id="rekog-block">
-      <h1>Image Scanned</h1>
-      <br>Please select an image
-      <input type="file" id="image">
-      <br>
-      <div id="crop-pic">
-        <div id="pic-div">
-          <img id="preview">
+      <div id="upload-wrapper">
+        <h1>Image Scanned</h1>
+        <label class="file-upload">Upload a Photo
+          <input type="file" id="image">
+        </label>
+      </div>
+      <div class="polar-wrapper">
+        <div id="crop-pic">
+          <div id="pic-div">
+            <img id="preview">
+          </div>
         </div>
       </div>
 
@@ -108,9 +115,8 @@
         <!-- <ul id="pic-labels"></ul> -->
         <p id="pic-labels"></p>
       </div>
-
-      <div>
-        <button class="back-button">Back</button>
+      <div id="rekog-back-button">
+        <a class="back-button">Back</a>
       </div>
 
     </div>

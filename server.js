@@ -94,9 +94,10 @@ mongoose.Promise = global.Promise;
 
 router.get('/logout', function (req, res){
   req.logout();
-  req.session.destroy(function (err) {
-    res.redirect('/');
-  });
+  res.redirect('/');
+  // req.session.destroy(function (err) {
+  //   res.redirect('/');
+  // });
 });
 
 app.get('/', (req, res) => {
