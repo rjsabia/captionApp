@@ -89,34 +89,27 @@ function setPlaySpeed() {
   vid.playbackRate = 0.72;
 } 
 
-// function headerScroll(){
-//   $(function() {
-//       $(window).on("scroll", function() {
-//           if($(window).scrollTop() > 50) {
-//               $("#header-container").addClass("active");
-//           } else {
-//               //remove the background property so it comes transparent again (defined in your css)
-//              $("#header-container").removeClass("active");
-//           }
-//       });
-//   });
-// }
-// function slideShow(){
-//   $('#slideshow > div:gt(0)').hide();
-
-//   setInterval(function(){
-//     $('#slideshow > div:first')
-//       .fadeOut(500)
-//       .next()
-//       .fadeIn(500)
-//       .end()
-//       .appendTo('#slideshow');
-//       $(".eachVid")[0].src = src+"?autoplay=1";
-//   }, 14000);
-// }
-
 $(document).ready( function(){
-    // slideShow();
+    $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start) {
+          $("#header-container").css('background-color', '#0099e5');
+          $("#header-container").css('height', '70px');
+          $("#header-container").css('border-bottom', 'none');
+          $("#logo").css('font-size', '31px');
+          $("#logo-div").css('background-color', 'transparent');
+          $("li a").css('font-size', '21px');
+          $(".mobile-menu-trigger a").css('font-size', '30px');
+      } else {
+         $('#header-container').css('background-color', 'transparent');
+         $("#header-container").css('height', '58px');
+         $("#header-container").css('border-bottom', 'solid 0.5px white');
+         $("#logo").css('font-size', '28px');
+         $("#logo-div").css('background-color', '#0099e5');
+         $("li a").css('font-size', '20px');
+         $(".mobile-menu-trigger a").css('font-size', '26px');
+      }
+    });
     // video playrate control
     setPlaySpeed();
     // mobile menu functionality using sidr
@@ -128,20 +121,6 @@ $(document).ready( function(){
     $('.mobile-button').bind("click", function(){
       $.sidr('close', 'sidr-right');
     });
-    // header scroll animation
-    // $(window).scroll(function(){
-    //   var top=$(window).scrollTop()
-    //   /*put your color in background color */
-    //   if(top>10){ 
-    //     $('#header-container').css('background-color','white');
-    //     $('#header-container').css('color','black'); 
-    //   }
-    //   else{ 
-    //     $('#header-container').css('background-color','Transparent'); 
-    //     $('#header-container').css('color','white');
-    //   }
-
-    // }); 
 
     $('.rekog-button').click(function(){
       $('#story-section').fadeOut(300);
