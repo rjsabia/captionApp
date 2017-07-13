@@ -94,18 +94,24 @@ $(document).ready( function(){
       scroll_start = $(this).scrollTop();
       if(scroll_start) {
           $("#header-container").css('background-color', '#0099e5');
+          $("#header-container").css('background-image', 
+            'radial-gradient(circle farthest-side at center bottom,#009cde,#003087 125%)');
           $("#header-container").css('height', '70px');
           $("#header-container").css('border-bottom', 'none');
           $("#logo").css('font-size', '31px');
           $("#logo-div").css('background-color', 'transparent');
+          $("#logo-div").css('background-image', 'none');
           $("li a").css('font-size', '21px');
           $(".mobile-menu-trigger a").css('font-size', '30px');
       } else {
          $('#header-container').css('background-color', 'transparent');
+         $("#header-container").css('background-image', 'none');
          $("#header-container").css('height', '58px');
          $("#header-container").css('border-bottom', 'solid 0.5px white');
          $("#logo").css('font-size', '28px');
          $("#logo-div").css('background-color', '#0099e5');
+         $('#logo-div').css('background-image', 
+          'radial-gradient(circle farthest-side at center bottom,#009cde,#003087 125%)')
          $("li a").css('font-size', '20px');
          $(".mobile-menu-trigger a").css('font-size', '26px');
       }
