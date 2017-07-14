@@ -86,7 +86,7 @@ function logIn(username, password, callback) {
 
 function setPlaySpeed() { 
   var vid = document.getElementById("banner-vid");
-  vid.playbackRate = 0.72;
+  vid.playbackRate = 0.70;
 } 
 
 $(document).ready( function(){
