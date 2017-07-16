@@ -137,6 +137,7 @@ $(document).ready( function(){
       $('#rekog-link').fadeOut(300);
       $('#signIn-link').fadeOut(300);
       $('#rekog-block').fadeIn(600);
+      $('#rekog-intro').fadeIn(600);
     });
     // form animation for signIn or register
     $('.message a').click(function(){
@@ -167,7 +168,18 @@ $(document).ready( function(){
       $('#signIn-link').fadeIn(600);
       $('#rekog-link').fadeIn(600);
       $('#story-section').fadeIn(600);
+      $('#pic-labels').empty();
+      $('#preview')[ 0 ].src = '#';
+      $("#preview").css('height', '0px');
+      $("#preview").css('opacity', '.01');
     });
+
+    $('.file-upload').click(function(){
+      $('#rekog-intro').fadeOut(3000);
+      $('#preview').fadeIn(3000);
+      $("#preview").css('height', 'auto');
+      $("#preview").css('opacity', '1');
+    })
 
     $('.register-form').submit(function(event) {
       event.preventDefault();

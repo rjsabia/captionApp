@@ -14,23 +14,18 @@ html, body {
 	display: none;
 	background-color: #F5F5F5;
 	margin: auto;
-	padding: 2% 15% 0 15%;
-	height: 100%;
+	padding: 2% 15% 2% 15%;
+	height: auto;
 	width: 100%;
 	text-align: center;
-	background: url(/images/wood_rekog_bg.jpg) no-repeat center center fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
 }
 #rekog-back-button{
-    width: 175px;
+    width: 165px;
     margin: 0 auto 0 auto;
-    font-size: 28px;
+    font-size: 25px;
 	color: white;
 	border-radius: 25px;
-	padding: 10px 20px 10px 20px;
+	padding: 8px 18px 8px 18px;
 	background-color: #34bf49;
 	-webkit-transition: all 0.7s ease;
     transition: all 0.7s ease;
@@ -43,14 +38,14 @@ input[type="file"] {
     display: none;
 }
 .file-upload {
-	margin-top: 10px;
-	margin-bottom: 5px;
-    font-size: 25px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+    font-size: 22px;
     color: white;
     background-color: #0099e5;
     border-radius: 25px;
     display: inline-block;
-    padding: 8px 15px;
+    padding: 6px 13px;
     cursor: pointer;
 }
 .file-upload:hover{
@@ -58,25 +53,54 @@ input[type="file"] {
 	background-color: #34bf49;
 	animation: none;
 }
-.polar-wrapper{
-	margin: 10px auto 10px auto; 
-	padding: 5px 5px 10% 5px;
-	border-radius: 2px;
-	border: solid 2px #787878;
-	min-height: 60%;
-	max-height: 70%
-	max-width: 60%;
-	min-width: 45%;
-	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+/*.polar-wrapper{
+	margin: 10px auto 10px auto;
+	 max-height: 35vw;
+	 min-height: 35vw;
+	 max-width: 50vw;
+	 min-width: 50vw;
+}*/
+/*polaroid test*/
+div.polaroid {
+	 background-color: white;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	 margin-bottom: 25px;
 }
-#crop-pic{
-	/*margin: auto;
-	height: auto;
- 	width: auto;
- 	overflow: hidden;*/
- 	width: 100% !important;
-	height: auto !important;
+div.container {
+  	text-align: center;
+  	padding: 10px 5px;
+  	width: 100%;
 }
+#pic-labels{
+	width: 100%;
+}
+#rekog-intro{
+	display: none;
+	height: 50%;
+	width: 100%;
+	padding: 10px;
+}
+#rekog-intro p{
+	font-size: 18px;
+	line-height: 25px;
+	margin-top: 10px;
+}
+#recog-bg{
+	margin-top: 15px;
+	height: 200px;
+	width: 200px;
+}
+@media (max-width: 605px){
+	#recog-bg{
+		height: 150px;
+		width: 150px;
+	}
+	#rekog-intro p{
+		font-size: 16px;
+		line-height: 22px;
+	}
+}
+/**********************/
 /*img{
 	height: auto;
 	max-width: 100%;
