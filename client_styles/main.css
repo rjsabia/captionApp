@@ -6,6 +6,7 @@ html, body {
   	height: 100%; 
   	background-color: #F5F5F5;
 }
+/*Demo Rekog block*/
 #rekog-block{
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
@@ -14,32 +15,40 @@ html, body {
 	background-color: #F5F5F5;
 	margin: auto;
 	padding: 2% 15% 0 15%;
+	height: 100%;
 	width: 100%;
 	text-align: center;
+	background: url(/images/wood_rekog_bg.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 }
 #rekog-back-button{
-	font-size: 28px;
+    width: 175px;
+    margin: 0 auto 0 auto;
+    font-size: 28px;
 	color: white;
-	width: 15%;
-	margin: 0px auto 10px auto;
 	border-radius: 25px;
 	padding: 10px 20px 10px 20px;
-	background-color: #6BBAA7;
+	background-color: #34bf49;
 	-webkit-transition: all 0.7s ease;
     transition: all 0.7s ease;
 }
 #rekog-back-button:hover{
-	background-color: #6C648B;
+	background-color: #0099e5;
 	cursor: pointer;
 }
 input[type="file"] {
     display: none;
 }
 .file-upload {
+	margin-top: 10px;
+	margin-bottom: 5px;
     font-size: 25px;
     color: white;
     background-color: #0099e5;
-    border-radius: 5px;
+    border-radius: 25px;
     display: inline-block;
     padding: 8px 15px;
     cursor: pointer;
@@ -61,29 +70,37 @@ input[type="file"] {
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 #crop-pic{
-	margin: auto;
+	/*margin: auto;
 	height: auto;
  	width: auto;
- 	overflow: hidden;
+ 	overflow: hidden;*/
+ 	width: 100% !important;
+	height: auto !important;
 }
-img{
+/*img{
 	height: auto;
 	max-width: 100%;
-}
+}*/
 #label-div{
 	margin: 10px auto 10px auto;
 	width: 60%;
 }
+/*****************************/
+/*login/register form styles*/
 #signIn-block{
 	display: none;
 	background-color: #F5F5F5;
+	background: url(/images/login_pic_bg1.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 	min-height: 100%;
 }
-/*login/register form styles*/
 .login-page {
   	height: 99%;
   	width: 45%;
-  	padding: 8% 0 0;
+  	padding: 4% 0 0 0;
   	margin: auto;
 }
 @media (max-width: 1024px){
@@ -121,7 +138,7 @@ img{
     z-index: 1;
 	background-color: #0099e5;
 	background-image: radial-gradient(circle farthest-side at center bottom,#009cde,#003087 125%);
-	opacity: 0.85;
+	opacity: 0.95;
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
@@ -339,7 +356,6 @@ video{
 #top-content{
 	position: relative;
 	margin: 0 auto 0 auto;
-	/*padding: 20px;*/
 	padding-top: 4vw;
 	top: -35vw;
 	color: black;
@@ -352,14 +368,12 @@ video{
 	font-family: 'Montserrat', sans-serif;
 	z-index: 5000;
 	height: 190px;
-	/*width: 50vw;*/
 	width: 100%;
 	text-align: center;
 }
 @media (max-width: 1155px) {
    #top-content {
    		font-size: 3vw;
-   		/*padding-top: 5.5vw*/
    		line-height: 4.5vw;
    	}
 }
@@ -527,8 +541,8 @@ p .bottom-stories{
 	position: relative;
 	margin: auto;
 	padding: 19px;
-	top: -68vw;
-	background-color: white;
+	top: -72vw;
+	background-color: #F5F5F5;
 	color: black;
 	letter-spacing: 2px;
 	font-size: 22px;
@@ -563,7 +577,7 @@ p .bottom-stories{
 		font-size: 18px;
 		width: 45%;
 		height: 48%;
-		top: -70vw;
+		top: -74vw;
 	}
 	.vector-pic-wrapper{
 		height: 155px;
@@ -571,6 +585,11 @@ p .bottom-stories{
 	}
 	.wow-text{
 		font-size: 21px
+	}
+}
+@media (max-width: 1150px){
+	#bottom-content{
+		top: -76vw;
 	}
 }
 @media (max-width: 924px){
@@ -687,6 +706,7 @@ p .bottom-stories{
 }
 #blank-set{
 	color: #F5F5F5;
+	opacity: 0;
 }
 #foot-div{
 	clear: both;
