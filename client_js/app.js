@@ -29,19 +29,23 @@ function printLabelsTest(responses){
   $('#pic-labels').empty();
   var intro;
   
-  $('#pic-labels').append('<span>'+'Your photo '+'</span>');
+  $('#pic-labels').append('<span class="underline">'+'Your photo '+'</span>');
   for(var i=0; i < responses.Labels.length; i++){
     var theLabel = responses.Labels[i].Name[0]; 
     // console.log(theLabel);
     if(theLabel.match(/[aeiouAEIOU]/)){
-      intro = " has an ";
+      intro = "<span> has an: </span>";
     } 
     else{
-      intro = " has a ";
+      intro = "<span> has a: </span>";
     }
-    $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+'</span>';
+    // $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+'</span>';
+    $('#pic-labels').append('<li>'+intro+responses.Labels[i].Name)+'</li>';
   }
-  $('#pic-labels').append('<span>'+' in it.'+'</span>');    
+  // $('#pic-labels').append('<span>'+' in it.'+'</span>');  
+   $('#pic-labels').append('<span class="underline">'+' in it.'+'</span>'); 
+   $('#pic-labels').append('</br><p id="explain">'+
+    'These are the data labels you can search for and organize your photos with.'+'</p>');  
 }
 
 function addUser(firstName, lastName, username, password, callback) {

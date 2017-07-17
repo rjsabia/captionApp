@@ -53,26 +53,24 @@ input[type="file"] {
 	background-color: #34bf49;
 	animation: none;
 }
-/*.polar-wrapper{
-	margin: 10px auto 10px auto;
-	 max-height: 35vw;
-	 min-height: 35vw;
-	 max-width: 50vw;
-	 min-width: 50vw;
-}*/
 /*polaroid test*/
 div.polaroid {
 	 background-color: white;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	 margin-bottom: 25px;
+	 width: 100%;
+	 min-height: 400px;
 }
 div.container {
-  	text-align: center;
+  	text-align: left;
+  	margin: 0 auto 0 auto;
   	padding: 10px 5px;
+  	padding-left: 70px;
   	width: 100%;
 }
 #pic-labels{
 	width: 100%;
+	display: inline-block;
 }
 #rekog-intro{
 	display: none;
@@ -100,14 +98,28 @@ div.container {
 		line-height: 22px;
 	}
 }
-/**********************/
-/*img{
-	height: auto;
-	max-width: 100%;
-}*/
-#label-div{
-	margin: 10px auto 10px auto;
-	width: 60%;
+#pic-labels span{
+	color: #787878;
+	font-size: 20px;
+	line-height: 28px;
+	z-index: 10000;
+}
+@media (max-width: 600px){
+	#pic-labels span{
+		line-height: 25px;
+		font-size: 18px;
+	}
+}
+#pic-labels li{
+	color: #34bf49;
+	font-style: bold;
+}
+.underline{
+	border-bottom: 2px solid #787878;
+}
+#explain{
+	font-size: 18px;
+	margin: 8px 0px 8px 0px;
 }
 /*****************************/
 /*login/register form styles*/
