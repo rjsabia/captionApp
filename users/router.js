@@ -4,7 +4,6 @@ var passport = require('passport')
 const express = require('express');
 const jsonParser = require('body-parser').json();
 const urlParser = require('body-parser').urlencoded({extended: false});
-// const passport = require('passport');
 const {User} = require('./models');
 const router = express.Router();
 
@@ -27,16 +26,8 @@ router.use(require('express-session')({
 router.use(passport.initialize());
 router.use(passport.session());
 
-
 router.use(urlParser);
 router.use(jsonParser);
-
-// router.get('/logout', function (req, res){
-//   req.logout();
-//   req.session.destroy(function (err) {
-//     res.redirect('/');
-//   });
-// });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -59,6 +50,11 @@ router.post('/login',
             res.json({user: req.user.apiRepr(), message: 'Sign in successful'});
         }
 );
+// router.post('/login',
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/login',
+//                                    failureFlash: true })
+// );
 
 
 router.post('/', (req, res) => {
@@ -133,7 +129,6 @@ router.get('/', (req, res) => {
     .then(users => res.json(users.map(user => user.apiRepr())))
     .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
-
 
 module.exports = {router};
  

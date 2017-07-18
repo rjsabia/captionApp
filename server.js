@@ -17,16 +17,9 @@ const app = express();
 
 const {router: usersRouter} = require('./users');
 
-router.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname,'./index.html'))
-});
+router.use('/', express.static('public'));
 
-router.use('/public', express.static('public'));
-router.use('/js', express.static('client_js'));
-router.use('/client_styles', express.static('client_styles'));
-router.use('/images', express.static('images'));
-
-console.log(process.env)
+// console.log(process.env)
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
@@ -81,13 +74,13 @@ app.use('/users', usersRouter);
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-app.use(session({ 
-  secret: 'picture',
-  resave: true,
-  saveUninitialized: true }));
+// app.use(session({ 
+//   secret: 'picture',
+//   resave: true,
+//   saveUninitialized: true }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(flash());
 
 mongoose.Promise = global.Promise;
@@ -95,9 +88,6 @@ mongoose.Promise = global.Promise;
 router.get('/logout', function (req, res){
   req.logout();
   res.redirect('/');
-  // req.session.destroy(function (err) {
-  //   res.redirect('/');
-  // });
 });
 
 app.get('/', (req, res) => {
@@ -158,6 +148,3 @@ if (require.main === module) {
 
 router.listen(3000);
 module.exports = {router, app, runServer, closeServer};
-
-// router.listen(3000);
-// module.exports = router
