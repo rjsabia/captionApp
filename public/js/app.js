@@ -82,6 +82,7 @@ function logIn(username, password, callback) {
     success: function(data) {
       // callback(data);
       window.location = '/dashboard.html';
+      // alert('Welcome back' + data);
     },
     error: function(error) {
       console.log(error);

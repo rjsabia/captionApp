@@ -68,6 +68,9 @@ div.container {
   	padding-left: 70px;
   	width: 100%;
 }
+#preview{
+	max-height: 600px;
+}
 #pic-labels{
 	width: 100%;
 	display: inline-block;
@@ -316,6 +319,9 @@ div.container {
 	font-size: 28px;
 	font-weight: 100;
 	transition: font-size 1.0s;
+}
+#logout-link{
+	display: none;
 }
 #nav-div{
 	width: 100%;
