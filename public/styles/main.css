@@ -59,17 +59,40 @@ div.polaroid {
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	 margin-bottom: 25px;
 	 width: 100%;
+	 height: auto;
 	 min-height: 400px;
+	 padding: 10px;
+	 display: flex;
 }
 div.container {
   	text-align: left;
-  	margin: 0 auto 0 auto;
+  	/*margin: 0 auto 0 auto;*/
   	padding: 10px 5px;
-  	padding-left: 70px;
-  	width: 100%;
+  	/*padding-left: 70px;*/
+  	/*width: 100%;*/
+  	/*display: inline;*/
+  	display: none;
+  	float: left;
+}
+/*#floater{
+	display: inline;
+	float: left;
+	clear: both;
+}*/
+#preview-container{
+	/*display: inline;*/
+	/*float: left;*/
 }
 #preview{
-	max-height: 600px;
+	height: auto;
+	width: auto;
+	max-height: 400px;
+	max-width: 400px;
+	overflow: hidden;
+	padding: 15px 5px;
+	margin-left: 80px;
+	float: left;
+	display: none
 }
 #pic-labels{
 	width: 100%;
@@ -80,6 +103,7 @@ div.container {
 	height: 50%;
 	width: 100%;
 	padding: 10px;
+	margin: 0px auto 0px auto;
 }
 #rekog-intro p{
 	font-size: 18px;

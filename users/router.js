@@ -51,7 +51,7 @@ router.post('/login',
     passport.authenticate('local', {session: true, failureRedirect: '/'}),
         (req, res) => {
             res.json({user: req.user.apiRepr(), message: 'Sign in successful'});
-            console.log(res.user);
+            // console.log(res.user);
         }
 );
 

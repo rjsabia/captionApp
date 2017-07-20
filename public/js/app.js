@@ -176,16 +176,21 @@ $(document).ready( function(){
       $('#rekog-link').fadeIn(600);
       $('#story-section').fadeIn(600);
       $('#pic-labels').empty();
+      $('#preview').css('display', 'none');
+      $('.container').css('display', 'none');
       $('#preview')[ 0 ].src = '#';
       $("#preview").css('height', '0px');
+      $("#preview").css('width', '0px');
       $("#preview").css('opacity', '.01');
     });
 
     $('.file-upload').click(function(){
-      $('#rekog-intro').fadeOut(3000);
-      $('#preview').fadeIn(3000);
+      $('#rekog-intro').fadeOut(2000);
       $("#preview").css('height', 'auto');
+      $("#preview").css('width', 'auto');
       $("#preview").css('opacity', '1');
+      $('#preview').fadeIn(1000);
+      $('.container').fadeIn(1000);
     })
 
     $('.register-form').submit(function(event) {
