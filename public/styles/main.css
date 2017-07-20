@@ -19,6 +19,11 @@ html, body {
 	width: 100%;
 	text-align: center;
 }
+#upload-wrapper h1{
+	color: black;
+	font-size: 24px;
+	margin-bottom: 5px;
+}
 #rekog-back-button{
     width: 165px;
     margin: 0 auto 0 auto;
@@ -66,22 +71,9 @@ div.polaroid {
 }
 div.container {
   	text-align: left;
-  	/*margin: 0 auto 0 auto;*/
   	padding: 10px 5px;
-  	/*padding-left: 70px;*/
-  	/*width: 100%;*/
-  	/*display: inline;*/
   	display: none;
   	float: left;
-}
-/*#floater{
-	display: inline;
-	float: left;
-	clear: both;
-}*/
-#preview-container{
-	/*display: inline;*/
-	/*float: left;*/
 }
 #preview{
 	height: auto;
@@ -93,6 +85,47 @@ div.container {
 	margin-left: 80px;
 	float: left;
 	display: none
+}
+@media (max-width: 1225px){
+	#preview{
+		margin-left: 60px;
+	}
+}
+@media (max-width: 1080px){
+	#preview{
+		margin-left: 40px;
+	}
+}
+@media (max-width: 930px){
+	#preview{
+		margin-left: 20px;
+	}
+}
+@media (max-width: 865px){
+	div.polaroid{
+		display: block;
+	}
+	div.container{
+		float: none;
+		text-align: center;
+		/*margin-left: 15vw;*/
+	}
+	#preview{
+		float: none;
+		margin-left: 0px;
+		padding: 0px;
+		max-height: 335px;
+		max-width: 335px;
+	}
+	#rekog-block{
+		padding: 2% 5% 2% 5%;
+	}
+}
+@media (max-width: 401px){
+		#preview{
+		max-height: 305px;
+		max-width: 305px;
+		}
 }
 #pic-labels{
 	width: 100%;
@@ -148,12 +181,45 @@ div.container {
 	font-size: 18px;
 	margin: 8px 0px 8px 0px;
 }
+.scanning:after {
+	content: '';
+	  /* make the element cover the whole thing */
+	display: block;
+    width: 100%;
+    height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	  /* and sit in front */
+	z-index: 1;
+	  /* gradient with a radar like fade */
+	background:
+    linear-gradient(90deg,
+    rgba(0,0,0,1),
+    rgba(0,0,0,1) 50%,
+    rgba(0,255,0,.5) 55%,
+    rgba(0,255,0,1) 56%,
+    rgba(0,0,0,1) 56%,
+    rgba(0,0,0,1)
+   );
+  /* make it big enough so when we slide it around still covers whole image */
+    background-size:     300% 100%;
+    background-repeat:   no-repeat;
+  /* start with the scan bar just off the left side */
+    background-position: 84% center;
+    -webkit-animation:   scan 4s infinite ease;
+ }
+
+@-webkit-keyframes scan {
+  /* finish with the scan bar just off the right side */
+   100% { background-position: 25% center; }
+}
 /*****************************/
 /*login/register form styles*/
 #signIn-block{
 	display: none;
 	background-color: #F5F5F5;
-	background: url(/images/login_pic_bg1.jpg) no-repeat center center fixed; 
+	background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(/images/login_pic_bg1.jpg) no-repeat center center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -201,7 +267,7 @@ div.container {
     z-index: 1;
 	background-color: #0099e5;
 	background-image: radial-gradient(circle farthest-side at center bottom,#009cde,#003087 125%);
-	opacity: 0.95;
+	opacity: 0.90;
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
@@ -426,7 +492,7 @@ video{
 	top: -35vw;
 	color: black;
 	background-color: white;
-	opacity: .45;
+	opacity: .60;
 	letter-spacing: 2px;
 	font-size: 2.8vw;
 	line-height: 3.7vw;
@@ -436,6 +502,9 @@ video{
 	height: 190px;
 	width: 100%;
 	text-align: center;
+}
+#top-content-h1{
+	opacity: 1;
 }
 @media (max-width: 1155px) {
    #top-content {

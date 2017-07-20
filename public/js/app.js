@@ -191,7 +191,14 @@ $(document).ready( function(){
       $("#preview").css('opacity', '1');
       $('#preview').fadeIn(1000);
       $('.container').fadeIn(1000);
-    })
+    });
+
+    $('.file-upload').click(function () {
+      $('#preview-container').addClass('scanning');
+      setTimeout(function () {
+        $('#preview-container').removeClass('scanning');
+      }, 10 * 1000);
+    });
 
     $('.register-form').submit(function(event) {
       event.preventDefault();
