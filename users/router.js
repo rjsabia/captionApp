@@ -65,7 +65,7 @@ router.post('/', (req, res) => {
     return res.status(422).json({message: 'Missing field: username'});
   }
 
-  let {username, password, firstName, lastName} = req.body;
+  let {username, password, firstName, email} = req.body;
 
   if (typeof username !== 'string') {
     return res.status(422).json({message: 'Incorrect field type: username'});
@@ -109,7 +109,8 @@ router.post('/', (req, res) => {
           username: username,
           password: hash,
           firstName: firstName,
-          lastName: lastName
+          email: email,
+          userPics: userPics
         })
     })
     .then(user => {

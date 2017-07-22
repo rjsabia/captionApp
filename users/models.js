@@ -5,11 +5,17 @@ mongoose.Promise = global.Promise;
 
 const UserSchema = mongoose.Schema({
   firstName: {type: String, default: ""},
-  lastName: {type: String, default: ""},
+  email: {type: String, 
+    required: true, 
+    unique: true
+  },
   username: {
     type: String,
     required: true,
     unique: true
+  },
+  userPics: {
+    picture: [{picId: String, dataLabel: String}]
   },
   password: {
     type: String,
@@ -22,7 +28,8 @@ UserSchema.methods.apiRepr = function() {
     id: this._id,
     username: this.username || '',
     firstName: this.firstName || '',
-    lastName: this.lastName || ''
+    email: this.email || '',
+    userPics: this.userPics || '',
   };
 }
 

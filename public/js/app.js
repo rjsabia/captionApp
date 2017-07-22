@@ -39,16 +39,14 @@ function printLabelsTest(responses){
     else{
       intro = "<span> has a: </span>";
     }
-    // $('#pic-labels').append('<span>'+intro+responses.Labels[i].Name)+'</span>';
     $('#pic-labels').append('<li>'+intro+responses.Labels[i].Name)+'</li>';
   }
-  // $('#pic-labels').append('<span>'+' in it.'+'</span>');  
    $('#pic-labels').append('<span class="underline">'+' in it.'+'</span>'); 
    $('#pic-labels').append('</br><p id="explain">'+
     'These are the data labels you can search for and organize your photos with.'+'</p>');  
 }
 
-function addUser(firstName, lastName, username, password, callback) {
+function addUser(firstName, email, username, password, callback) {
   $.ajax({
     url: "http://localhost:8080/users/",
     contentType: 'application/json',
@@ -57,7 +55,7 @@ function addUser(firstName, lastName, username, password, callback) {
     data: JSON.stringify(
       {
       firstName: firstName,
-      lastName: lastName,
+      email: email,
       username: username,
       password: password
       }
@@ -204,13 +202,13 @@ $(document).ready( function(){
       event.preventDefault();
       let firstName = $('.register').find('#firstName').val();
       console.log(firstName);
-      let lastName = $('.register').find('#lastName').val();
-      console.log(lastName);
+      let email = $('.register').find('#email').val();
+      console.log(email);
       let username = $('.register').find('#username').val();
       console.log(username);
       let password = $('.register').find('#password').val();
-      console.log(password);
-      addUser(firstName, lastName, username, password, function(data){
+      // console.log(password);
+      addUser(firstName, email, username, password, function(data){
         console.log(data);
       });
     });
