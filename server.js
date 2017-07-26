@@ -17,7 +17,7 @@ const app = express();
 
 const {router: usersRouter} = require('./users');
 
-router.use('/', express.static('public'));
+app.use('/', express.static('public'));
 
 // console.log(process.env)
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
@@ -25,7 +25,7 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
 
-router.get('/sign', function(req, res) {
+app.get('/sign', function(req, res) {
   aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
 
   var s3 = new aws.S3()
@@ -39,6 +39,8 @@ router.get('/sign', function(req, res) {
 
   s3.getSignedUrl('putObject', options, function(err, data){
     if(err) return res.send('Error with S3')
+      // !!!!this console log returns pic URL, I think
+      console.log('this should be url for pic: ' + data);
       
       res.json({
         signed_request: data,
@@ -48,7 +50,7 @@ router.get('/sign', function(req, res) {
     })
   })
 
-router.get('/api/rekog', function(req,res){
+app.get('/api/rekog', function(req,res){
   var request = require('request')
 
   request({
@@ -60,12 +62,17 @@ router.get('/api/rekog', function(req,res){
         'Content-Type':'application/json'
       }
     },function(error,response,body){
-      console.log(response.statusCode)
+      // console.log(response.statusCode)
       console.log(body)
       res.status(response.statusCode).json(body);
     }
   )
 })
+
+// testing route to add pic url
+// router.get('/addPicUrl', users.addPicUrl);
+// ********************************
+
 
 var cors = require('cors');
 app.use(cors());
@@ -73,36 +80,13 @@ app.use('/users', usersRouter);
 // test code for login
 app.use(morgan('common'));
 app.use(bodyParser.json());
-
-// app.use(session({ 
-//   secret: 'picture',
-//   resave: true,
-//   saveUninitialized: true }));
-
-// app.use(passport.initialize());
-// app.use(passport.session());
 app.use(flash());
 
 mongoose.Promise = global.Promise;
 
-router.get('/logout', function (req, res){
+app.get('/logout', function (req, res){
   req.logout();
   res.redirect('/');
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + './index.html');
-});
-
-app.get('public/dashboard',
-  require('connect-ensure-login').ensureLoggedIn(),
-  function(req, res){
-    res.sendFile(__dirname + './dashboard.html');
-  }
-);
-
-app.use('*', function(req, res) {
-  res.status(404).json({message: 'Not Found'});
 });
 
 // ******************************
@@ -146,5 +130,5 @@ if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
-router.listen(3000);
+// router.listen(3000);
 module.exports = {router, app, runServer, closeServer};

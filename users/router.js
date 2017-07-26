@@ -129,5 +129,12 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
 
+// testing pushing user pic url
+// exports.addPicUrl = function (req, res, next){
+//   var theUrl = userPics[0].picUrl;
+//   Users.findOneAndUpdate({username: req.user.username}, {$push: {picUrl: theUrl}});
+// };
+// ******************************************
+
 module.exports = {router};
  

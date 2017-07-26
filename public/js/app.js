@@ -45,6 +45,27 @@ function printLabelsTest(responses){
    $('#pic-labels').append('</br><p id="explain">'+
     'These are the data labels you can search for and organize your photos with.'+'</p>');  
 }
+// push labels and url to user database TEST
+function pushPicData(picData, linkUrl){
+
+  console.log('Here is your pic link: ' + linkUrl);
+  console.log('Here is your response: ' + JSON.stringify(picData));
+  // $.ajax({
+  //   url: "http://localhost:8080/users/addPicUrl",
+  //   contentType: 'application/json',
+  //   type: 'POST',
+  //   dataType: 'json',
+  //   data: linkUrl,
+
+  //   success: function(data) {
+  //     callback(data);
+  //     console.log('check your postman for: ' + data)
+  //   },
+  //   error: function(error) {
+  //     console.log(error);
+  // })
+}
+// *****************************************
 
 function addUser(firstName, email, username, password, callback) {
   $.ajax({
@@ -190,7 +211,7 @@ $(document).ready( function(){
       $('#preview').fadeIn(1000);
       $('.container').fadeIn(1000);
     });
-
+    // Image scanning effect
     $('.file-upload').click(function () {
       $('#preview-container').addClass('scanning');
       setTimeout(function () {
@@ -231,20 +252,20 @@ $(document).ready( function(){
       sign_request(file, function(response) {
         upload(file, response.signed_request, response.url, function() {
           document.getElementById("preview").src = response.url
-          var xhr = new XMLHttpRequest()
-          
-          xhr.open("GET", "/api/rekog?file_name=" + file.name)
-
-          xhr.onreadystatechange = function() {
-            if(xhr.readyState === 4 && xhr.status === 200) {
-              var response = JSON.parse(xhr.responseText)
-            //RESPONSE IS MY OBJECT 
+          var picUrl = response.url;
+          $.ajax({
+            url: "/api/rekog?file_name=" + file.name,
+            contentType: 'application/json',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
               printLabelsTest(response);
-
+              pushPicData(response, picUrl);
+            },
+            error: function(error) {
+              console.log(error);
             }
-          }
-
-          xhr.send() 
+          });  
 
         })
       })

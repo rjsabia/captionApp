@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const UserSchema = mongoose.Schema({
-  firstName: {type: String, default: ""},
+  firstName: String,
   email: {type: String, 
     required: true, 
     unique: true
@@ -14,9 +14,8 @@ const UserSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  userPics: {
-    picture: [{picId: String, dataLabel: String}]
-  },
+  userPics: Array,
+    
   password: {
     type: String,
     required: true
