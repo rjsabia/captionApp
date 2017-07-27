@@ -1,4 +1,22 @@
 function upload(file, signed_request, url, done) {
+//   $.ajax({
+//     url: url,
+//     contentType: 'application/json',
+//     type: 'PUT',
+//     dataType: 'json',
+//     headers: {
+//       'x-amz-acl': 'public-read',
+//     },
+//     data: JSON.stringify({file: file, signed_request: signed_request}),
+//     success: function(data) {
+//       done(data);
+//     },
+//     error: function(error) {
+//       console.log(error);
+//     }
+// });  
+
+
   var xhr = new XMLHttpRequest()
   xhr.open("PUT", signed_request)
   xhr.setRequestHeader('x-amz-acl', 'public-read')
@@ -76,8 +94,13 @@ function pushPicData(picData, linkUrl){
     }
   ),
     success: function(data) {
-      callback(data);
-      console.log('check your postman for: ' + data)
+      if(data.message){
+        alert('You are not logged in');
+      }
+      else{
+        // need them to do something if everything went good
+      }
+      console.log('check your postman for: ' + JSON.stringify(data));
     },
     error: function(error) {
       console.log(error);

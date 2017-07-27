@@ -47,6 +47,16 @@ passport.use(new LocalStrategy(
   }
 ));
 
+const isAuthenticated = (req, res, next) => {
+  console.log(req.user);
+  if(req.user){
+    next();
+  }
+  else{
+    res.json({message: "Not authorized"});
+  }
+}
+
 router.post('/login',
     passport.authenticate('local', {session: true, failureRedirect: '/'}),
         (req, res) => {
@@ -61,10 +71,14 @@ router.post('/login',
 //     res.redirect('/dashboard.html');
 //   });
 
-router.post('/addPicData', (req,res) => {
-  var newPic = {"picLink": req.body.linkUrl, "picLabels": req.body.picData};
-  // User.findOneAndUpdate({name: req.user.username}, {$push: {userpics: newPic}});
-  users.userPics.push({userpics: newPic});
+router.post('/addPicData', isAuthenticated, (req,res) => {
+  const newPic = {"picLink": req.body.linkUrl, "picLabels": req.body.picData};
+  User.findByIdAndUpdate(req.user._id, {$push: {userPics: newPic}}, (error, data) => {
+    if(error){
+      res.send(error);
+    }
+    res.json(data);
+  })
 })
 
 
