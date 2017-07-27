@@ -39,9 +39,9 @@ passport.use(new LocalStrategy(
       if (!user.validatePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      else{
+      // else{
         return done(null, user);
-      }
+      // }
       
     });
   }
@@ -55,6 +55,19 @@ router.post('/login',
         }
 );
 
+// router.post('/login', 
+//   passport.authenticate('local', { failureRedirect: '/' }),
+//   function(req, res) {
+//     res.redirect('/dashboard.html');
+//   });
+
+router.post('/addPicData', (req,res) => {
+  var newPic = {"picLink": req.body.linkUrl, "picLabels": req.body.picData};
+  // User.findOneAndUpdate({name: req.user.username}, {$push: {userpics: newPic}});
+  users.userPics.push({userpics: newPic});
+})
+
+
 router.post('/', (req, res) => {
   console.log(req.body);
   if (!req.body) {
@@ -65,7 +78,7 @@ router.post('/', (req, res) => {
     return res.status(422).json({message: 'Missing field: username'});
   }
 
-  let {username, password, firstName, email} = req.body;
+  let {username, password, firstName, email, userPics} = req.body;
 
   if (typeof username !== 'string') {
     return res.status(422).json({message: 'Incorrect field type: username'});

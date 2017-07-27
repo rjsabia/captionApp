@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.light.css">
 </head>
 
 <body>
@@ -23,57 +22,52 @@
         <nav>
           <div id="nav-div" class="desktop-menu">
             <ul>
-              <li id="rekog-link">
+             <!--  <li id="rekog-link">
                 <a class="rekog-button">Demo</a>
-              </li>
-              <li id="about-link">
+              </li> -->
+              <!-- <li id="about-link">
                 <a class="about-button">About</a>
-              </li>
+              </li> -->
               <li id="logout-link">
                 <a href="/logout" class="logout-button">Logout</a>
               </li>
-              <li id="signIn-link">
+             <!--  <li id="signIn-link">
                 <a class="signIn-button">Account</a> 
-              </li>
+              </li> -->
             </ul>
           </div>
 
-          <div class="mobile-menu-trigger"><a id="right-menu" href="#right-menu" class="mobile-menu">&#9776;<i class="fa fa-bars"></i></a></div>
-
-          <div id="sidr-right">
-            <ul>
-              <li id="rekog-link">
-                <a class="rekog-button mobile-button">Demo</a>
-              </li>
-              <li id="about-link">
-                <a class="about-button mobile-button">About</a>
-              </li>
-              <li id="signIn-link">
-                <a class="signIn-button mobile-button">Account</a> 
-              </li>
-            </ul>
-          </div>  
         </nav>
        
        </div>
 
     </header>
 
-    <div id="load-image-wrapper">
-      <button id="load-images" type="submit">Load image</button>
-      <div>
-        <ul id="account-images"></ul>
+    <div id="rekog-block">
+      <div id="upload-wrapper">
+        <h1>A.I. Image Scanner</h1>
+        <label class="file-upload">Upload a Photo
+          <input type="file" id="image">
+        </label>
       </div>
+      
+      <div class="polaroid">
+        <div id="rekog-intro">
+          <p class="rekog-p">Upload your photo by clicking the Upload photo button.</p>
+          <img id="recog-bg" src="images/recog_bg.png" alt="grey image of a photo">
+          <p class="rekog-p">It will automatically be scanned and return the names of what is in it.</p>
+        </div>
+        <div id="preview-container">
+          <img id="preview" style="width:100%">
+        </div>
+        <div class="container"> 
+          <ul id="pic-labels"></ul>       
+        </div>
+      </div>
+
     </div>
-
-	<!-- <div>
-		<h1>Hello I am Dashboard</h1>
-	</div>
-
-	<div class="log-out"><a href="/logout" title="Sign out">Sign out</a></div> -->
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/app.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.js"></script>
 	
 </body>

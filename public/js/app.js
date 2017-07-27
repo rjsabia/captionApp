@@ -12,17 +12,31 @@ function upload(file, signed_request, url, done) {
 }
 
 function sign_request(file, done) {
-  var xhr = new XMLHttpRequest()
-  xhr.open("GET", "/sign?file_name=" + file.name + "&file_type=" + file.type)
-
-  xhr.onreadystatechange = function() {
-    if(xhr.readyState === 4 && xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText)
-      done(response)
-      }
+  $.ajax({
+    url: "/sign?file_name=" + file.name + "&file_type=" + file.type,
+    contentType: 'application/json',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      done(response);
+    },
+    error: function(error) {
+      console.log(error);
     }
+});  
 
-      xhr.send()
+
+  // var xhr = new XMLHttpRequest()
+  // xhr.open("GET", "/sign?file_name=" + file.name + "&file_type=" + file.type)
+
+  // xhr.onreadystatechange = function() {
+  //   if(xhr.readyState === 4 && xhr.status === 200) {
+  //     var response = JSON.parse(xhr.responseText)
+  //     done(response)
+  //     }
+  //   }
+
+  //     xhr.send()
 }
 
 function printLabelsTest(responses){
@@ -50,20 +64,25 @@ function pushPicData(picData, linkUrl){
 
   console.log('Here is your pic link: ' + linkUrl);
   console.log('Here is your response: ' + JSON.stringify(picData));
-  // $.ajax({
-  //   url: "http://localhost:8080/users/addPicUrl",
-  //   contentType: 'application/json',
-  //   type: 'POST',
-  //   dataType: 'json',
-  //   data: linkUrl,
-
-  //   success: function(data) {
-  //     callback(data);
-  //     console.log('check your postman for: ' + data)
-  //   },
-  //   error: function(error) {
-  //     console.log(error);
-  // })
+  $.ajax({
+    url: "http://localhost:8080/users/addPicData",
+    contentType: 'application/json',
+    type: 'POST',
+    dataType: 'json',
+    data: JSON.stringify(
+    {
+      linkUrl: linkUrl,
+      picData: picData
+    }
+  ),
+    success: function(data) {
+      callback(data);
+      console.log('check your postman for: ' + data)
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
 }
 // *****************************************
 
@@ -237,11 +256,11 @@ $(document).ready( function(){
     $('.login-form').submit(function(event) {
       event.preventDefault();
       let username = $('.login-form').find('#login-username').val();
-      console.log(username);
+      // console.log(username);
       let password = $('.login-form').find('#login-pw').val();
-      console.log(password);
+      // console.log(password);
       logIn(username, password, function(loginData){
-        console.log(loginData);
+        // console.log(loginData);
       });
     });
 
