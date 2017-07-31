@@ -125,7 +125,7 @@ function addUser(firstName, email, username, password, callback) {
     ),
     success: function(data) {
       callback(data);
-      window.location = '/dashboard.html';
+      window.location = '/';
     },
     error: function(error) {
       console.log(error);
@@ -142,7 +142,9 @@ function logIn(username, password, callback) {
     data: JSON.stringify({ username: username, password: password}), 
     success: function(data) {
       // callback(data);
-      window.location = '/dashboard.html';
+      console.log(data);
+      window.location = '/';
+      offerLogout();
       // alert('Welcome back' + data);
     },
     error: function(error) {
@@ -156,6 +158,11 @@ function setPlaySpeed() {
   var vid = document.getElementById("banner-vid");
   vid.playbackRate = 0.70;
 } 
+
+function offerLogout(){
+  $('.signIn-button').hide();
+  $('.logout-button').fadeIn(100);
+}
 
 $(document).ready( function(){
     $(document).scroll(function() { 
@@ -223,12 +230,24 @@ $(document).ready( function(){
       $('#signIn-block').fadeIn(600);
     });
 
+    $('.about-button').click(function(){
+      $('#story-section').fadeOut(300);
+      $('#header-container').fadeOut(300);
+      $('#vid-container').fadeOut(300);
+      $('#story-content').fadeOut(300);
+      $('#foot-div').fadeOut(300);
+      $('#signIn-link').fadeOut(300);
+      $('#rekog-link').fadeOut(300);
+      $('#about-block').fadeIn(600);
+    })
+
     $('.back-button').click(function(){
       $('.register-form')[0].reset();
       $('.login-form')[0].reset();
       $('#signIn-block').fadeOut(300);
       $('#rekog-block').fadeOut(300);
       $('#sign-up').fadeOut(300);
+      $('#about-block').fadeOut(300);
       $('#header-container').fadeIn(300);
       $('#story-content').fadeIn(300);
       $('#foot-div').fadeIn(300);

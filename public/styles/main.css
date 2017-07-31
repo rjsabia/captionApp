@@ -384,6 +384,13 @@ div.container {
 .container .info span .fa {
     color: #EF3B3A;
 }
+/*about block*/
+#about-block{
+	display: none;
+	min-height: 100%;
+}
+/**************************/
+/*main styling*/
 /**************************/
 #header-container{
 	position: fixed;
@@ -450,6 +457,9 @@ li a:hover{
 	font-size: 26px;
 	text-decoration: none;
 	transition: font-size 1.0s;
+}
+.logout-button{
+	display: none;
 }
 /*mobile menu*/
 @media only screen and (min-width: 1009px) {
@@ -580,13 +590,8 @@ h2{
 p .bottom-stories{
 	margin-bottom: 55px;
 }
-/*#story-section{
-	max-height: 1000px;
-}*/
 .stories{
-	/*font-size: 20px;*/
 	font-size: 1.75vw;
-	/*padding: 0% 16% 0% 16%;*/
 }
 @media (max-width: 975px){
 	#story-content-1{
