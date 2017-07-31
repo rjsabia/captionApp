@@ -241,6 +241,7 @@ $(document).ready( function(){
       $('#about-block').fadeIn(600);
     })
 
+
     $('.back-button').click(function(){
       $('.register-form')[0].reset();
       $('.login-form')[0].reset();
