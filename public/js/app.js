@@ -1,5 +1,6 @@
 var herokuUrl = 'https://shrouded-bastion-13556.herokuapp.com/';
 
+
 function upload(file, signed_request, url, done) {
 //   $.ajax({
 //     url: url,
