@@ -65,12 +65,6 @@ router.post('/login',
         }
 );
 
-// router.post('/login', 
-//   passport.authenticate('local', { failureRedirect: '/' }),
-//   function(req, res) {
-//     res.redirect('/dashboard.html');
-//   });
-
 router.post('/addPicData', isAuthenticated, (req,res) => {
   const newPic = {"picLink": req.body.linkUrl, "picLabels": req.body.picData};
   User.findByIdAndUpdate(req.user._id, {$push: {userPics: newPic}}, (error, data) => {
@@ -155,13 +149,6 @@ router.get('/', (req, res) => {
     .then(users => res.json(users.map(user => user.apiRepr())))
     .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
-
-// testing pushing user pic url
-// exports.addPicUrl = function (req, res, next){
-//   var theUrl = userPics[0].picUrl;
-//   Users.findOneAndUpdate({username: req.user.username}, {$push: {picUrl: theUrl}});
-// };
-// ******************************************
 
 module.exports = {router};
  

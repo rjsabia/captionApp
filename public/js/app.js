@@ -1,3 +1,5 @@
+var herokuUrl = 'https://shrouded-bastion-13556.herokuapp.com/';
+
 function upload(file, signed_request, url, done) {
 //   $.ajax({
 //     url: url,
@@ -111,7 +113,8 @@ function pushPicData(picData, linkUrl){
 
 function addUser(firstName, email, username, password, callback) {
   $.ajax({
-    url: "http://localhost:8080/users/",
+    // url: "http://localhost:8080/users/",
+    url: herokuUrl + "users/",
     contentType: 'application/json',
     type: 'POST',
     dataType: 'json',
@@ -135,7 +138,8 @@ function addUser(firstName, email, username, password, callback) {
 
 function logIn(username, password, callback) {
   $.ajax({
-    url: "http://localhost:8080/users/login",
+    // url: "http://localhost:8080/users/login",
+    url: herokuUrl + "login",
     contentType: 'application/json',
     type: 'POST',
     dataType: 'json',
