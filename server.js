@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+const request = require('request');
 
 const {PORT, DATABASE_URL} = require('./config');
 
@@ -51,7 +52,6 @@ app.get('/sign', function(req, res) {
   })
 
 app.get('/api/rekog', function(req,res){
-  var request = require('request')
 
   request({
       uri:'https://b5hrtlne7l.execute-api.us-east-1.amazonaws.com/dev/analysis',
