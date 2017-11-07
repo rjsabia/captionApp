@@ -2,24 +2,6 @@ var herokuUrl = 'https://shrouded-bastion-13556.herokuapp.com/';
 
 
 function upload(file, signed_request, url, done) {
-//   $.ajax({
-//     url: url,
-//     contentType: 'application/json',
-//     type: 'PUT',
-//     dataType: 'json',
-//     headers: {
-//       'x-amz-acl': 'public-read',
-//     },
-//     data: JSON.stringify({file: file, signed_request: signed_request}),
-//     success: function(data) {
-//       done(data);
-//     },
-//     error: function(error) {
-//       console.log(error);
-//     }
-// });  
-
-
   var xhr = new XMLHttpRequest()
   xhr.open("PUT", signed_request)
   xhr.setRequestHeader('x-amz-acl', 'public-read')
@@ -46,18 +28,6 @@ function sign_request(file, done) {
     }
 });  
 
-
-  // var xhr = new XMLHttpRequest()
-  // xhr.open("GET", "/sign?file_name=" + file.name + "&file_type=" + file.type)
-
-  // xhr.onreadystatechange = function() {
-  //   if(xhr.readyState === 4 && xhr.status === 200) {
-  //     var response = JSON.parse(xhr.responseText)
-  //     done(response)
-  //     }
-  //   }
-
-  //     xhr.send()
 }
 
 function printLabelsTest(responses){
@@ -114,7 +84,6 @@ function pushPicData(picData, linkUrl){
 
 function addUser(firstName, email, username, password, callback) {
   $.ajax({
-    // url: "http://localhost:8080/users/",
     url: herokuUrl + 'users/',
     contentType: 'application/json',
     type: 'POST',
@@ -139,7 +108,6 @@ function addUser(firstName, email, username, password, callback) {
 
 function logIn(username, password, callback) {
   $.ajax({
-    // url: "http://localhost:8080/users/login",
     url: herokuUrl + 'login',
     contentType: 'application/json',
     type: 'POST',
@@ -304,11 +272,8 @@ $(document).ready( function(){
     $('.login-form').submit(function(event) {
       event.preventDefault();
       let username = $('.login-form').find('#login-username').val();
-      // console.log(username);
       let password = $('.login-form').find('#login-pw').val();
-      // console.log(password);
       logIn(username, password, function(loginData){
-        // console.log(loginData);
       });
     });
 

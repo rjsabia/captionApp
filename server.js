@@ -69,11 +69,6 @@ app.get('/api/rekog', function(req,res){
   )
 })
 
-// testing route to add pic url
-// router.get('/addPicUrl', users.addPicUrl);
-// ********************************
-
-
 var cors = require('cors');
 app.use(cors());
 app.use('/users', usersRouter);
@@ -89,9 +84,6 @@ app.get('/logout', function (req, res){
   res.redirect('/');
 });
 
-// ******************************
-// referenced by both runServer and closeServer. closeServer
-// assumes runServer has run and set `server` to a server object
 let server;
 
 function runServer() {
@@ -130,5 +122,4 @@ if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
-// router.listen(3000);
 module.exports = {router, app, runServer, closeServer};

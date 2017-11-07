@@ -39,10 +39,7 @@ passport.use(new LocalStrategy(
       if (!user.validatePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      // else{
-        return done(null, user);
-      // }
-      
+        return done(null, user); 
     });
   }
 ));
@@ -61,7 +58,6 @@ router.post('/login',
     passport.authenticate('local', {session: true, failureRedirect: '/'}),
         (req, res) => {
             res.json({user: req.user.apiRepr(), message: 'Sign in successful'});
-            // console.log(res.user);
         }
 );
 
