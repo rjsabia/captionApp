@@ -7,9 +7,8 @@ to scan and categorize your photos. In its current first iteration
 Photo Babbel is basically a proof of concept that allows any user
 a simple interface that they can upload a few photos to and see what 
 a computer see's within them.
-=====================================================================
 
-![home page image for Photo Babbel](../public/images/photobabel_screenshot.png)
+![](./public/images/photobabel_screenshot.png?cropResize=400,400)
 ===============================================================================
 
 Why Not just use the those sites to search?
