@@ -8,7 +8,7 @@ Photo Babbel is basically a proof of concept that allows any user
 a simple interface that they can upload a few photos to and see what 
 a computer see's within them.
 
-![](./public/images/photobabel_screenshot.png?cropResize=300,200)
+![](./public/images/heroimage_captionApp.png?cropResize=300,200)
 ===============================================================================
 
 Why Not just use the those sites to search?
