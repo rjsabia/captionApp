@@ -113,7 +113,7 @@ complexity smoothly.
 Want to get in touch, share your thoughts, or collaborate?
 -----------------------------------------------------------
 
-Jump to my portfolio site and head to the Contact me section: [russellsabia.com](russellsabia.com)
+Jump to my portfolio site and head to the Contact me section: [russellsabia.com](http://russellsabia.com)
 
 
 
