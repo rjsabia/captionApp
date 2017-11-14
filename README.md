@@ -3,10 +3,10 @@ Photo Babbel
 
 Welcome to Photo Babbel, a web-app designed to test the concept
 of using an artificially intelligent deep learning neural net 
-to scan and categorize your photos and make them searchable. In 
+to scan and categorize your photos to make them searchable. In 
 its current first iteration Photo Babbel is basically a proof of 
 concept that allows any user a simple interface that they can 
-upload a few photos to and see what a computer see's within them.
+upload a few photos to, and then find out what the A.I. see's within them.
 
 ![](./public/images/heroimage_captionApp.png?cropResize=300,200)
 ===============================================================================
@@ -14,14 +14,17 @@ upload a few photos to and see what a computer see's within them.
 Doesn't Facebook and Google photos already do this?
 ----------------------------------------------------
 
-Well the answer to that is, yes infact they do. However two things
+Well the answer to that is, yes infact they do. However three things
 were the driving force behind building this: 
 
 - One was that I was frustrated with having a completely chaotic
 Dropbox account with thousands of photos, to which I could never 
 find the one I wanted when I wanted.
 
-- Two was, well I wanted to see if a developer within their first
+- Two was that I thought it would be cool if users could actually
+see how photo A.I. interprets objects in a photo.
+
+- And three was, well I wanted to see if a developer within their first
 year of coding (me) could build such a thing. Apparently the answer 
 is YES! 
 
@@ -61,7 +64,6 @@ What the server and I see
 ===============================================================================
 
 
-
 Technical Specs
 ===============
 
@@ -92,10 +94,10 @@ The purpose of this will be so that this database can be searched through based
 on a users key word queries, and have the searches return any images that match 
 their search. The key to keeping this simple, fast, and cheap will be to only store 
 the direct data for the photo's and not the image itself. Sound easy? Well that part 
-is not the trick, the trick will be conect this to the photos themselves based on
+is not the trick, the trick will be connecting this to the photos themselves based on
 a photos access url, and then attemping to integrate this into a service like Dropbox.
 Why am I putting all of this out here, well because I would love any idea's and or 
-feedback from anyone reading this of course.
+feedback from anyone reading this of course. 
 
 Future Improvements?
 ===========================
