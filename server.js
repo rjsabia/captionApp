@@ -20,6 +20,9 @@ const {router: usersRouter} = require('./users');
 
 app.use('/', express.static('public'));
 
+//test comment
+
+
 // console.log(process.env)
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
